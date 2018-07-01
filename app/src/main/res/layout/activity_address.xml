@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/include_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/bdp_10"
+        android:paddingBottom="@dimen/bdp_10"
+        android:paddingLeft="@dimen/bdp_10"
+        android:paddingRight="@dimen/bdp_10"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/tv_scan"
+            android:layout_width="@dimen/bdp_28"
+            android:layout_height="@dimen/bdp_28"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_scan" />
+        <!--<SearchView-->
+        <!--android:iconifiedByDefault="false"-->
+
+        <!--android:background="@drawable/bg_serachview"-->
+        <!--android:closeIcon="@null"-->
+        <!--android:queryHint="请输入关键字查询"-->
+
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="32dp"></SearchView>-->
+        <EditText
+            android:id="@+id/edt_search"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:layout_width="wrap_content"
+            android:textColor="@color/textPrimary2"
+            android:layout_height="32dp"
+            android:textColorHint="@color/textSencondary"
+            android:textSize="@dimen/text_size_14"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/bdp_10"
+            android:layout_marginRight="@dimen/bdp_10"
+            android:layout_weight="1"
+            android:background="@drawable/bg_serachview"
+            android:hint="请输入关键字查询"/>
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="50dp"
+            android:layout_height="32dp"
+            android:textSize="@dimen/text_size_14"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_serachview"
+            android:text="搜索" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:paddingLeft="@dimen/bdp_10"
+        android:paddingRight="@dimen/bdp_10"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <View style="@style/itemDivider"
+            android:background="@color/textSencondary"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bdp_30"
+            android:layout_marginRight="@dimen/bdp_30"
+            android:text="地址列表"
+            android:textColor="@color/textSencondary"
+            />
+        <View style="@style/itemDivider"
+            android:background="@color/textSencondary"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+
+            />
+    </LinearLayout>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    android:id="@+id/smart_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+<com.scwang.smartrefresh.layout.footer.ClassicsFooter
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

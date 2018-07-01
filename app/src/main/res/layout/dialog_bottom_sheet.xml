@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/bdp_10"
+        android:layout_marginRight="@dimen/bdp_10"
+        android:background="@drawable/shape_bottom_layout"
+        android:orientation="vertical">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/bdp_10"
+                android:text="请选择"
+                android:textColor="@color/textTertiary"
+                android:textSize="@dimen/text_size_16" />
+
+            <View style="@style/itemDivider" />
+
+            <TextView
+                android:id="@+id/tv_cisborder_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/bdp_10"
+                android:text="采集境内人员"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_16" />
+
+            <View style="@style/itemDivider" />
+
+            <TextView
+                android:id="@+id/tv_outbound_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/bdp_10"
+                android:text="采集境外人员"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_16" />
+
+            <View style="@style/itemDivider" />
+
+            <TextView
+                android:id="@+id/tv_nodoor_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/bdp_10"
+                android:text="采集无户人员"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_16" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_margin="@dimen/bdp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bottom_cancel"
+        android:text="取消"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16" />
+    </LinearLayout>

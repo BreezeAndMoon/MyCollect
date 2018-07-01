@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rl_item_police_list"
+    android:paddingBottom="@dimen/bdp_15"
+    android:layout_marginBottom="@dimen/bdp_1"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/img_police_danger"
+        android:layout_width="@dimen/bdp_48"
+        android:layout_height="@dimen/bdp_48"
+        android:layout_marginLeft="@dimen/bdp_15"
+        android:layout_marginTop="@dimen/bdp_20"
+        android:src="@mipmap/ic_police_risk_red" />
+
+    <TextView
+        android:id="@+id/tv_police_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/img_police_danger"
+        android:layout_marginLeft="@dimen/bdp_10"
+        android:layout_marginTop="@dimen/bdp_5"
+        android:layout_toRightOf="@+id/img_police_danger"
+        android:text="xxx警情"
+        tools:text="xxx警情" />
+
+    <TextView
+        android:id="@+id/tv_police_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img_police_danger"
+        android:layout_marginBottom="@dimen/bdp_5"
+        android:layout_marginLeft="@dimen/bdp_10"
+        android:layout_toRightOf="@+id/img_police_danger"
+        android:text="2018-01-11 11:35"
+        tools:text="2018-01-11 11:35" />
+
+    <com.joint.jointpolice.widget.tablayout.widget.MsgView
+        android:id="@+id/tv_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/bdp_15"
+        android:paddingBottom="@dimen/bdp_2"
+        android:paddingLeft="@dimen/bdp_10"
+        android:paddingRight="@dimen/bdp_10"
+        android:paddingTop="@dimen/bdp_2"
+        android:text="签收"
+        android:textColor="@color/gray"
+        app:mv_backgroundColor="@null"
+        app:mv_cornerRadius="@dimen/bdp_5"
+        app:mv_strokeColor="@color/colorGray"
+        app:mv_strokeWidth="@dimen/bdp_0_5"
+        tools:text="签收" />
+    <com.joint.jointpolice.widget.tablayout.widget.MsgView
+        android:id="@+id/tv_no_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/bdp_10"
+        android:paddingBottom="@dimen/bdp_2"
+        android:paddingLeft="@dimen/bdp_10"
+        android:layout_toLeftOf="@+id/tv_sign"
+        android:visibility="gone"
+        android:paddingRight="@dimen/bdp_10"
+        android:paddingTop="@dimen/bdp_2"
+        android:text="拒签"
+        android:textColor="@color/gray"
+        app:mv_backgroundColor="@null"
+        app:mv_cornerRadius="@dimen/bdp_5"
+        app:mv_strokeColor="@color/colorGray"
+        app:mv_strokeWidth="@dimen/bdp_0_5"
+        tools:text="拒签" />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_police_sort_main_tv" android:state_checked="true" />
+    <item android:drawable="@drawable/shape_police_sort_main_tv" android:state_pressed="true" />
+    <item android:drawable="@drawable/shape_police_sort_main_tv" android:state_selected="true" />
+    <item android:drawable="@drawable/shape_police_sort_main_tv" android:state_enabled="true"></item>
+    <item android:drawable="@drawable/shape_police_sort_tv" />
+</selector>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/tv_police_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/select_police_sort_tv"
+        android:enabled="false"
+        android:gravity="center"
+        android:paddingBottom="@dimen/bdp_10"
+        android:paddingTop="@dimen/bdp_10"
+        android:textColor="@color/select_police_sort_tv" />
+</FrameLayout>

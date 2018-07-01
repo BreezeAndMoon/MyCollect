@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_search_police"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/bdp_15"
+        android:paddingRight="@dimen/bdp_15">
+
+        <LinearLayout
+            android:id="@+id/ll_search_police"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/bdp_5"
+            android:layout_marginTop="@dimen/bdp_5"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/bdp_5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/bdp_5"
+                android:drawableLeft="@mipmap/ic_police_search"
+                android:text="搜索警情"
+                android:textSize="@dimen/text_size_12" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        android:visibility="visible">
+
+        <com.joint.jointpolice.widget.tablayout.SlidingTabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:background="@color/transparent"
+            app:tl_indicator_color="@color/colorPrimary"
+            app:tl_indicator_corner_radius="@dimen/bdp_3"
+            app:tl_indicator_height="@dimen/bdp_3"
+            app:tl_indicator_width="@dimen/bdp_20"
+            app:tl_indicator_width_equal_title="true"
+            app:tl_tab_padding="@dimen/bdp_15"
+            app:tl_tab_space_equal="true"
+            app:tl_textSelectColor="@color/colorPrimary"
+            app:tl_textUnselectColor="@color/colorGray"
+            app:tl_textsize="@dimen/text_size_13">
+
+
+        </com.joint.jointpolice.widget.tablayout.SlidingTabLayout>
+
+    </RelativeLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:paddingTop="@dimen/bdp_1"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

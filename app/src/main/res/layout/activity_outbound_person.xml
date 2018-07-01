@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/include_toolbar" />
+
+    <com.joint.jointpolice.widget.RecyScollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/bdp_100"
+            android:orientation="vertical">
+
+            <View
+                style="@style/itemDivider"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/tv_title_address"
+                style="@style/TitleTextView"
+                android:drawableLeft="@drawable/location"
+                android:text="地址信息"
+                android:textSize="@dimen/text_size_16"></TextView>
+
+            <View
+                style="@style/itemDivider"
+                android:layout_marginLeft="@dimen/bdp_10"
+                android:layout_marginRight="@dimen/bdp_10" />
+
+            <LinearLayout
+                style="@style/userCommon"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/bdp_15"
+                android:paddingLeft="@dimen/bdp_15"
+                android:paddingRight="@dimen/bdp_15"
+                android:paddingTop="@dimen/bdp_15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="凤里街五星社区"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_size_17" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="福建省石狮市星学巷33号101室"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_size_14" />
+            </LinearLayout>
+
+            <View
+                style="@style/itemDivider"
+                android:layout_height="@dimen/bdp_15" />
+
+            <TextView
+                android:id="@+id/tv_title_house"
+                style="@style/TitleTextView"
+                android:drawableLeft="@drawable/ic_house"
+                android:text="人员信息"
+                android:textSize="@dimen/text_size_15" />
+
+            <View
+                style="@style/itemDivider"
+                android:layout_marginLeft="@dimen/bdp_10"
+                android:layout_marginRight="@dimen/bdp_10" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/bdp_20"
+                android:paddingRight="@dimen/bdp_20">
+
+                <TextView
+                    style="@style/RedTitleTextView"
+                    android:text="人员照片" />
+
+                <View style="@style/itemDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recy_building_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingTop="@dimen/bdp_10"
+                        android:visibility="visible" />
+
+                    <View style="@style/itemDivider" />
+
+                    <TextView
+                        style="@style/RedTitleTextView"
+                        android:text="基本信息" />
+
+                    <View style="@style/itemDivider" />
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_person_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/bdp_5"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择人员类型"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="人员类型"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_certificate_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择证件类型"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="证件类型"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_country"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请选择国籍/地区"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="国籍地区"
+
+                        ></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_certificate_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入证件号码"
+                        custom:tv_text="证件号码"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_field_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:text="居住月份"
+                                android:textColor="@color/textTertiary" />
+
+                            <TextView
+                                android:id="@+id/tv_red_star"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/bdp_10"
+                                android:gravity="center_vertical"
+                                android:text="*"
+                                android:textColor="@color/red" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radio_group_live_time"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <RadioButton
+                                android:id="@+id/radiobtn_more_than_six"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="居住＞6个月" />
+
+                            <RadioButton
+                                android:id="@+id/radiobtn_less_than_six"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="居住＜6个月" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text="以下[房东信息]和[代管人信息]至少需要完整填写一个"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_size_9" />
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_english_surname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入大写的英文姓"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="英&#8194;文&#8194;姓"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_english_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入大写的英文名"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="英&#8194;文&#8194;名"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_chinese_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入中文姓名"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="中文姓名"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_birth_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择出生日期"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="出生日期"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_sex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择性别"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="性&#12288;&#12288;别"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_stay_expiration_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择停留有效期限"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="停&#12288;&#12288;留\n有效期限"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_live_place"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择居住处所"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="居住处所"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_temp_live_cause"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择暂住事由"
+                        custom:tv_star_visible="VISIBLE"
+                        custom:tv_text="暂住事由"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_birth_place"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择出生地"
+                        custom:tv_text="出&#8194;生&#8194;地"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_certificate_expiration_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请选择证件有效期限"
+                        custom:tv_text="证&#12288;&#12288;件\n有效期限"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_enter_country_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择入境时间"
+                        custom:tv_text="入境时间"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_enter_country_place"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择入境口岸"
+                        custom:tv_text="入境口岸"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:text="即&#12288;&#12288;时\n通讯类型"
+                                android:textColor="@color/textTertiary" />
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radio_group_message_type"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radiobtn_wechat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="微信" />
+
+                            <RadioButton
+                                android:id="@+id/radiobtn_other"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="其他" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_message_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入即时通讯账号"
+                        custom:tv_text="即&#12288;&#12288;时\n通讯账号"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_relationship_with_landlord"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
+                        custom:edt_hint="请选择与房东关系"
+                        custom:tv_text="与房东关系"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <TextView
+                        style="@style/RedTitleTextView"
+                        android:text="邀请单位" />
+
+                    <View style="@style/itemDivider" />
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_unit_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入单位名称"
+                        custom:tv_text="单位名称"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_unit_contact_person"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入单位联系人"
+                        custom:tv_text="单&#12288;&#12288;位\n联系人"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_unit_contactPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入单位联系人电话"
+                        custom:tv_text="单&#12288;&#12288;位\n联系人电话"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_unit_contact_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请输入单位联系地址"
+                        custom:tv_text="单&#12288;&#12288;位\n联系地址"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                    <com.joint.jointpolice.widget.custom.CollectFieldItem
+                        android:id="@+id/item_remark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        custom:edt_hint="请填写备注"
+                        custom:tv_text="备&#12288;&#12288;注"></com.joint.jointpolice.widget.custom.CollectFieldItem>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <View
+                style="@style/itemDivider"
+                android:layout_height="@dimen/bdp_150" />
+        </LinearLayout>
+
+
+    </com.joint.jointpolice.widget.RecyScollView>
+
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:paddingBottom="@dimen/bdp_15"
+        android:paddingTop="@dimen/bdp_15"
+        android:text="保存"
+        android:textColor="@color/white" />
+
+    <!--</LinearLayout>-->
+
+
+</LinearLayout>
+

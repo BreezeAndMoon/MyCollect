@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/bdp_1"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/bdp_15"
+    android:paddingRight="@dimen/bdp_10"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_person_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/bdp_5"
+            android:text="人员姓名:"
+            android:textColor="@color/textTertiary"
+            android:textSize="@dimen/text_size_14" />
+
+        <TextView
+            android:id="@+id/tv_person_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/bdp_5"
+            android:text="人员类别:"
+            android:textColor="@color/textTertiary"
+            android:textSize="@dimen/text_size_14" />
+
+        <TextView
+            android:id="@+id/tv_update_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/bdp_5"
+            android:text="更新时间:"
+            android:textColor="@color/textTertiary"
+            android:textSize="@dimen/text_size_14" />
+
+    </LinearLayout>
+
+    <!--<com.joint.jointpolice.widget.tablayout.widget.MsgView-->
+        <!--android:id="@+id/msgview_change"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:background="@null"-->
+        <!--android:paddingLeft="@dimen/bdp_15"-->
+        <!--android:paddingRight="@dimen/bdp_15"-->
+        <!--android:paddingBottom="@dimen/bdp_3"-->
+        <!--android:paddingTop="@dimen/bdp_3"-->
+        <!--android:text="修改"-->
+        <!--android:textColor="@color/textTertiary"-->
+        <!--app:mv_cornerRadius="@dimen/bdp_5"-->
+        <!--app:mv_strokeColor="@color/colorPrimary"-->
+        <!--app:mv_strokeWidth="@dimen/bdp_0_5" />-->
+</RelativeLayout>

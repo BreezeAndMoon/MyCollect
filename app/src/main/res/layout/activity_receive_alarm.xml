@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <com.joint.jointpolice.widget.RecyScollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_receive_alarm_people"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/bdp_15"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_alarm_people" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请填写报警人"
+                    android:paddingRight="@dimen/bdp_15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_alarm_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bdp_20"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/bdp_15"
+                app:layout_constraintTop_toBottomOf="@+id/ll_alarm_people">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_alarm_phone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请填写联系方式"
+                    android:paddingRight="@dimen/bdp_15" />
+            </LinearLayout>
+
+            <include
+                layout="@layout/include_picture_select"
+                app:layout_constraintTop_toBottomOf="@+id/ll_alarm_phone" />
+
+            <TextView
+                android:id="@+id/tv_receive_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bdp_20"
+                android:paddingLeft="@dimen/bdp_15"
+                android:text="案发地址:"
+                app:layout_constraintTop_toBottomOf="@+id/ll_alarm_phone" />
+
+            <LinearLayout
+                android:id="@+id/ll_alarm_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bdp_20"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/bdp_15"
+                app:layout_constraintTop_toBottomOf="@+id/tv_receive_address">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/ic_logo" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingRight="@dimen/bdp_15"
+                    android:text="显示默认案发地址详细信息 " />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_alarm_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bdp_20"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/bdp_15"
+                app:layout_constraintTop_toBottomOf="@+id/ll_alarm_address">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="案由案情:" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/bdp_15"
+                    android:text="案由案情"
+                    android:textColor="@color/textHint" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_alarm_sort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bdp_20"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/bdp_15"
+                app:layout_constraintTop_toBottomOf="@+id/ll_alarm_reason">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="警情类别:" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/bdp_15"
+                    android:text="请选择警情类别"
+                    android:textColor="@color/textHint" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_receive_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bdp_20"
+                android:paddingLeft="@dimen/bdp_15"
+                android:text="警情等级:"
+                app:layout_constraintTop_toBottomOf="@+id/ll_alarm_sort" />
+
+
+            <TextView
+                android:id="@+id/tv_receive_obtain_evidence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/bdp_20"
+                android:text="现场取证"
+                android:visibility="gone"
+                app:layout_constraintLeft_toRightOf="@+id/tv_receive_grade"
+                app:layout_constraintTop_toBottomOf="@+id/ll_alarm_sort"
+                app:layout_constraintTop_toTopOf="@+id/tv_receive_grade" />
+
+            <TextView
+                android:id="@+id/tv_receive_sure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/bdp_40"
+                android:layout_marginRight="@dimen/bdp_40"
+                android:layout_marginTop="@dimen/bdp_20"
+                android:background="@drawable/bg_login_gray"
+                android:gravity="center"
+                android:paddingBottom="@dimen/bdp_10"
+                android:paddingTop="@dimen/bdp_10"
+                android:text="@string/btn_confirm"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_receive_obtain_evidence" />
+
+        </LinearLayout>
+
+    </com.joint.jointpolice.widget.RecyScollView>
+</LinearLayout>

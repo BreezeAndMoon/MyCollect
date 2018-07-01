@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--&gt;-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_field"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_field_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/textTertiary" />
+
+        <TextView
+            android:id="@+id/tv_red_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bdp_10"
+            android:gravity="center_vertical"
+            android:text="*"
+            android:textColor="@color/red" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_field_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center_vertical"
+        android:textColor="@color/textPrimary2"
+        android:textColorHint="@color/textSencondary"
+        android:textSize="@dimen/text_size_14"
+        android:theme="@style/MyEditText" />
+</LinearLayout>
+
+    <!--</LinearLayout>-->

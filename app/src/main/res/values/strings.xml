@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">移动警务</string>
+    <string name="nd_imgMap_service">http://27.154.234.238:6080/arcgis/rest/services/NingDeShi/ND_ND_IMAGE/MapServer</string>
+    <string name="nd_vectorMap_service">http://27.154.234.238:6080/arcgis/rest/services/NingDeShi/NingDeShi_PGIS_20171213/MapServer</string>
+    <string name="wellLid_map_service">http://27.154.234.238:6088/arcgis/rest/services//xiamen3857_140/MapServer</string>
+    <string name="jq_featureServer">http://27.154.234.238:6088/arcgis/rest/services/JC/Jingqing/FeatureServer/0</string>
+    <string name="jc_featureServer">http://27.154.234.238:6088/arcgis/rest/services/JC/JC_police/FeatureServer/0</string>
+    <string name="location_permission_denied">无法定位当前位置,因为位置访问权限被拒绝</string>
+
+
+    <string name="btn_cancel">取消</string>
+    <string name="btn_complete">完成</string>
+    <string name="btn_confirm">确定</string>
+
+    <!--警情相关-->
+    <string name="text_alarm_people">报警人: </string>
+    <string name="text_alarm_phone">联系方式: </string>
+    <string name="text_alarm_img">报警照片: </string>
+    <string name="text_alarm_voice">报警录音: </string>
+    <string name="text_alarm_video">报警视频: </string>
+    <string name="text_alarm_address">报警地址: </string>
+    <string name="text_alarm_reason">案由案情: </string>
+    <string name="text_alarm_grade">警情等级: </string>
+    <string name="text_alarm_circum_info">周边信息</string>
+    <string name="text_alarm_start_feedback">到场反馈</string>
+    <string name="text_alarm_obtain_evidence">现场取证</string>
+    <string name="text_alarm_end_feedback">处置反馈</string>
+    <string name="text_receive_alarm">现场接警</string>
+
+
+    <string name="text_picture_img_num">现场照片(%d/9)</string>
+    <string name="text_picture_voice_num">现场音频(%d/9)</string>
+    <string name="text_picture_video_num">现场视频(%d/9)</string>
+    <!--采集相关-->
+    <string name="text_collect_sum">今日采集总数:</string>
+    <string name="nature_hint">房屋性质:</string>
+    <string name="type_hint">房屋类别:</string>
+    <string name="time_hint">更新时间:</string>
+    <string name="unit_name_hint">单位名称:</string>
+    <string name="unit_type_hint">单位类型:</string>
+    <string name="person_name_hint">人员姓名:</string>
+    <string name="person_type_hint">人员类别:</string>
+    <!--服务地址-->
+    <string name="get_flat_list_url">http://27.154.234.238:8082/Police3DWebServices/FlatService.svc/GetListByPage</string>
+    <string name="save_flat_url">http://27.154.234.238:8082/Police3DWebServices/FlatService.svc/Save</string>
+    <string name="get_flat_byid_url">http://27.154.234.238:8082/Police3DWebServices/FlatService.svc/GetByID</string>
+    <string name="get_flat_filemodels_url">http://27.154.234.238:8082/Police3DWebServices/FlatService.svc/GetFileModels</string>
+    <string name="upload_file_url">http://27.154.234.238:8082/Police3DWebServices/TransferService.svc/UploadFile</string>
+    <string name="save_unit_url">http://27.154.234.238:8082/Police3DWebServices/EnterpriseService.svc/SaveEnterprise</string>
+    <string name="get_unit_filemodels_url">http://27.154.234.238:8082/Police3DWebServices/EnterpriseService.svc/GetFileModels</string>
+    <string name="get_unit_byflatid_url">http://27.154.234.238:8082/Police3DWebServices/EnterpriseService.svc/GetEnterpriseListByFlatID</string>
+    <string name="delete_unit_byid_url">http://27.154.234.238:8082/Police3DWebServices/EnterpriseService.svc/DeleteEnterprise</string>
+    <string name="save_person_url">http://27.154.234.238:8082/Police3DWebServices/PersonService.svc/Save</string>
+    <string name="get_persons_byflatid_url">http://27.154.234.238:8082/Police3DWebServices/PersonService.svc/GetListByFlatID</string>
+    <string name="get_person_filemodels_url">http://27.154.234.238:8082/Police3DWebServices/PersonService.svc/GetFileModels</string>
+    <string name="delete_person_byid_url">http://27.154.234.238:8082/Police3DWebServices/PersonService.svc/Delete</string>
+    <string name="login_getuser_url">http://27.154.234.238:8082/Police3DWebServices/DictionaryService.svc/GetUser</string>
+</resources>

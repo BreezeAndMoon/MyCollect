@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rent_type_array">
+        <item>重点户</item>
+        <item>一般户</item>
+        <item>放心户</item>
+        <item>有安全隐患</item>
+        <item>安全隐患消除</item>
+        <item>通知整改</item>
+        <item>无安全隐患</item>
+        <item>治安隐患超过一年</item>
+    </string-array>
+</resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/include_toolbar" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+        <com.esri.arcgisruntime.mapping.view.MapView
+            android:id="@+id/mapview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></com.esri.arcgisruntime.mapping.view.MapView>
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_add_location"
+            />
+    </FrameLayout>
+
+    <!--<View-->
+        <!--style="@style/itemDivider"-->
+        <!--android:layout_height="@dimen/bdp_15"/>-->
+    <com.joint.jointpolice.widget.custom.CollectFieldItem
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/bdp_20"
+        android:paddingRight="@dimen/bdp_20"
+        app:tv_text="门牌地址"
+        app:edt_hint="请输入门牌地址"
+        android:paddingTop="@dimen/bdp_10"
+        ></com.joint.jointpolice.widget.custom.CollectFieldItem>
+    <View
+    style="@style/itemDivider"
+    android:layout_height="@dimen/bdp_150"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:paddingBottom="@dimen/bdp_15"
+        android:paddingTop="@dimen/bdp_15"
+        android:text="保存"
+        android:textColor="@color/white" />
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config.data.sdcard.offline.dir">test</string>
+    <!--<string name="config.mmpk.name">PGIS_</string>-->
+    <!--<string name="config.mmpk.name">first</string>-->
+    <!--<string name="config.mmpk.name">sencond</string>-->
+    <!--<string name="config.mmpk.name">third</string>-->
+    <string name="config.mmpk.name">蕉城爱区_L10_12_14</string>
+</resources>

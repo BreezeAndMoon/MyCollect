@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/userCommon"
+        android:paddingBottom="@dimen/bdp_15"
+        android:paddingTop="@dimen/bdp_15">
+
+        <TextView
+            android:id="@+id/tv_collect_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingRight="@dimen/bdp_15"
+            android:text=""
+            android:textColor="@color/textTertiary" />
+
+        <EditText
+            android:id="@+id/edt_collect_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:textColor="@color/textPrimary2"
+            android:textColorHint="@color/textSencondary"
+            android:textSize="@dimen/text_size_14" />
+
+    </LinearLayout>
+
+    <View style="@style/itemDivider" />
+</LinearLayout>

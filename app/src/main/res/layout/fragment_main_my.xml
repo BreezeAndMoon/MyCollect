@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<include layout="@layout/include_toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/bdp_20">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/ic_default_user" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="张三" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/bdp_10"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/userCommon">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/ic_default_user"
+                android:drawablePadding="@dimen/bdp_10"
+                android:text="高频模式" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:switchMinWidth="@dimen/bdp_45"
+                android:theme="@style/MySwitch" />
+        </LinearLayout>
+
+        <View
+            style="@style/itemDivider"
+            android:layout_marginLeft="@dimen/bdp_15" />
+
+        <LinearLayout style="@style/userCommon">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/ic_default_user"
+                android:drawablePadding="@dimen/bdp_10"
+                android:text="上岗" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:switchMinWidth="@dimen/bdp_45"
+                android:theme="@style/MySwitch" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bdp_10"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_update_password"
+            style="@style/userCommon"
+            android:drawableLeft="@mipmap/ic_default_user"
+            android:drawablePadding="@dimen/bdp_10"
+            android:text="修改密码" />
+
+        <View
+            style="@style/itemDivider"
+            android:layout_marginLeft="@dimen/bdp_15" />
+
+        <TextView
+            android:id="@+id/tv_time_synchronization"
+            style="@style/userCommon"
+            android:drawableLeft="@mipmap/ic_default_user"
+            android:drawablePadding="@dimen/bdp_10"
+            android:text="时钟同步" />
+
+        <View
+            style="@style/itemDivider"
+            android:layout_marginLeft="@dimen/bdp_15" />
+
+        <TextView
+            style="@style/userCommon"
+            android:drawableLeft="@mipmap/ic_default_user"
+            android:drawablePadding="@dimen/bdp_10"
+            android:text="版本升级" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_logout"
+        style="@style/userCommon"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/bdp_10"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_14" />
+    </LinearLayout>
+
+
+</LinearLayout>

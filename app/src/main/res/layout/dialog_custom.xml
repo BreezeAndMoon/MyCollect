@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="@dimen/bdp_240"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/bdp_20"
+        android:paddingTop="@dimen/bdp_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            tools:text="标题" />
+
+        <View
+            style="@style/itemDivider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bdp_1"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/bdp_20">
+
+            <TextView
+                android:id="@+id/tv_dialog_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/bdp_10"
+                android:background="@drawable/bg_login_white_gray_f9"
+                android:paddingBottom="@dimen/bdp_3"
+                android:paddingLeft="@dimen/bdp_30"
+                android:paddingRight="@dimen/bdp_30"
+                android:paddingTop="@dimen/bdp_3"
+                tools:text="@string/btn_cancel" />
+
+            <TextView
+                android:id="@+id/tv_dialog_comfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/bdp_10"
+                android:background="@drawable/bg_round_white_main"
+                android:paddingBottom="@dimen/bdp_3"
+                android:paddingLeft="@dimen/bdp_30"
+                android:paddingRight="@dimen/bdp_30"
+                android:paddingTop="@dimen/bdp_3"
+                android:textColor="@color/colorPrimary"
+                tools:text="@string/btn_confirm" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
