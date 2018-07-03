@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.HttpException;
 import com.google.gson.Gson;
@@ -139,7 +140,7 @@ public class OkHttpClientManager {
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addPart(Headers.of("Content-Disposition", "form-data; name=\"callbackurl\""), RequestBody.create(null, "/idcard/"))
                 .addPart(Headers.of("Content-Disposition", "form-data; name=\"action\""), RequestBody.create(null, "idcard"))
-                .addPart(Headers.of("Content-Disposition", "form-data; name=\"img\"; filename=\"idcardFront_user.jpg\""), RequestBody.create(MediaType.parse("image/jpeg"), file))
+                .addPart(Headers.of("Content-Disposition", "form-data; name=\"img\"; filename=\"idcard.jpg\""), RequestBody.create(MediaType.parse("image/jpeg"), file))
                 .build();
         //进行包装，使其支持进度回调
         final Request request = new Request.Builder()
@@ -147,8 +148,8 @@ public class OkHttpClientManager {
                 .header("Accept-Encoding", "gzip,deflate")
                 .header("Host", "ocr.ccyunmai.com:8080")
                 .header("Origin", "http://ocr.ccyunmai.com:8080")
-                .header("Referer", "http://ocr.ccyunmai.com:8080/idcard/")
-                .header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2398.0 Safari/537.36")
+                .header("Referer", "http://ocr.ccyunmai.com:8080/UploadImage.action")
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36")
                 .url("http://ocr.ccyunmai.com:8080/UploadImage.action")
                 .post(requestBody)
                 .build();

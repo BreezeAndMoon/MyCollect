@@ -3,6 +3,7 @@ package com.joint.jointpolice.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.joint.jointpolice.constants.Constant;
 import com.joint.jointpolice.model.CollectModels.Flat;
 import com.joint.jointpolice.model.CollectModels.Person;
 import com.joint.jointpolice.util.Id2StringUtil;
+import com.joint.jointpolice.util.StringUtil;
 
 import static com.joint.jointpolice.util.DateUtil.formatDate;
 
@@ -49,7 +51,7 @@ public class ActualPersonAdapter extends BaseRecycleAdapter<Person> {
     @Override
     public void getItemView(RecycleViewHolder viewHolder, int position, Person item) {
         TextView nameTextView = viewHolder.getView(R.id.tv_person_name);
-        nameTextView.setText(mNameHint + item.getName());
+        nameTextView.setText(mNameHint + StringUtil.formatString( item.getName()));
         TextView typeTextView = viewHolder.getView(R.id.tv_person_type);
         typeTextView.setText(mTypeHint + Id2StringUtil.convertPersonType(item.getPersonTypeID()));
         TextView timeTextView = viewHolder.getView(R.id.tv_update_time);

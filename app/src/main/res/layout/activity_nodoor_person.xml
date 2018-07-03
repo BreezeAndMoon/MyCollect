@@ -120,7 +120,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/bdp_5"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="请输入姓名"
                         custom:tv_star_visible="VISIBLE"
                         custom:tv_text="姓&#12288;&#12288;名"></com.joint.jointpolice.widget.custom.CollectFieldItem>
@@ -147,7 +147,7 @@
                         android:id="@+id/item_contactPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="请输入联系电话"
                         custom:tv_star_visible="VISIBLE"
                         custom:tv_text="联系电话"></com.joint.jointpolice.widget.custom.CollectFieldItem>
@@ -156,7 +156,7 @@
                         android:id="@+id/item_before_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="请输入曾用名"
                         custom:tv_text="曾&#8194;用&#8194;名"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -212,7 +212,7 @@
                         android:id="@+id/item_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="请输入现居地址"
                         custom:tv_text="民&#12288;&#12288;族"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -220,7 +220,7 @@
                         android:id="@+id/item_orignal_native_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="请输入原籍地址"
                         custom:tv_text="原籍地址"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -242,7 +242,7 @@
                         android:id="@+id/item_guarder_idcard_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="监护人身份证号"
                         custom:tv_star_visible="VISIBLE"
                         custom:tv_text="身份证号"></com.joint.jointpolice.widget.custom.CollectFieldItem>
@@ -252,7 +252,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/bdp_5"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="监护人姓名"
                         custom:tv_star_visible="VISIBLE"
                         custom:tv_text="姓&#12288;&#12288;名"></com.joint.jointpolice.widget.custom.CollectFieldItem>
@@ -262,7 +262,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/bdp_5"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="监护人联系电话"
                         custom:tv_star_visible="VISIBLE"
                         custom:tv_text="联系电话"></com.joint.jointpolice.widget.custom.CollectFieldItem>
@@ -271,7 +271,7 @@
                         android:id="@+id/item_guarder_relationship"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="监护人关系"
                         custom:tv_text="关&#12288;&#12288;系"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -279,7 +279,7 @@
                         android:id="@+id/item_guarder_native_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="监护人户籍地址"
                         custom:tv_text="户籍地址"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -310,17 +310,17 @@
                         android:id="@+id/item_nodoor_cause"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        custom:edt_focusable="false"
+                        custom:edt_focusable="true"
                         custom:edt_hint="请输入无户原因"
                         custom:tv_star_visible="VISIBLE"
                         custom:tv_text="无户原因"></com.joint.jointpolice.widget.custom.CollectFieldItem>
                 </LinearLayout>
 
-                <View
-                    style="@style/itemDivider"
-                    android:layout_height="@dimen/bdp_150" />
-            </LinearLayout>
 
+            </LinearLayout>
+            <View
+                style="@style/itemDivider"
+                android:layout_height="@dimen/bdp_150" />
 
         </LinearLayout>
 

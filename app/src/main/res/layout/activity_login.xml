@@ -3,49 +3,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <EditText
-        android:id="@+id/edt_user_name"
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    >
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_login"
+    android:scaleType="center"
+    />
+</FrameLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/bdp_40"
-        android:layout_marginRight="@dimen/bdp_40"
-        android:layout_marginTop="@dimen/bdp_150"
-        android:background="@drawable/bg_login_white_gray"
-        android:hint="请输入用户名"
-        android:paddingBottom="@dimen/bdp_8"
-        android:paddingLeft="@dimen/bdp_15"
-        android:paddingTop="@dimen/bdp_8"
-        android:text="" />
+        android:orientation="vertical"
+        >
+        <EditText
+            android:id="@+id/edt_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bdp_20"
+            android:layout_marginRight="@dimen/bdp_20"
+            android:layout_marginTop="@dimen/bdp_50"
+            android:background="@drawable/bg_login_white_gray"
+            android:hint="请输入用户名"
+            android:paddingBottom="@dimen/bdp_8"
+            android:paddingLeft="@dimen/bdp_15"
+            android:paddingTop="@dimen/bdp_8"
+            android:text=""/>
+        <EditText
+            android:id="@+id/edt_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bdp_20"
+            android:layout_marginRight="@dimen/bdp_20"
+            android:layout_marginTop="@dimen/bdp_20"
+            android:background="@drawable/bg_login_white_gray"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:paddingBottom="@dimen/bdp_8"
+            android:paddingLeft="@dimen/bdp_15"
+            android:paddingTop="@dimen/bdp_8"
+            android:text="" />
 
-    <EditText
-        android:id="@+id/edt_pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/bdp_40"
-        android:layout_marginRight="@dimen/bdp_40"
-        android:layout_marginTop="@dimen/bdp_40"
-        android:background="@drawable/bg_login_white_gray"
-        android:hint="请输入密码"
-        android:inputType="textPassword"
-        android:paddingBottom="@dimen/bdp_8"
-        android:paddingLeft="@dimen/bdp_15"
-        android:paddingTop="@dimen/bdp_8"
-        android:text="" />
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bdp_20"
+            android:layout_marginRight="@dimen/bdp_20"
+            android:layout_marginTop="@dimen/bdp_80"
+            android:layout_marginBottom="@dimen/bdp_80"
+            android:background="@drawable/select_btn_login"
+            android:gravity="center"
+            android:enabled="false"
+            android:paddingBottom="@dimen/bdp_8"
+            android:paddingTop="@dimen/bdp_8"
+            android:text="登录"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/bdp_40"
-        android:layout_marginRight="@dimen/bdp_40"
-        android:layout_marginTop="@dimen/bdp_40"
-        android:background="@drawable/select_btn_login"
-        android:gravity="center"
-        android:enabled="true"
-        android:paddingBottom="@dimen/bdp_8"
-        android:paddingTop="@dimen/bdp_8"
-        android:text="登录"
-        android:textColor="@color/white" />
+
+
 
 </LinearLayout>

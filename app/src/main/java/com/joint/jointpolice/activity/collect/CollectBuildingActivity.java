@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acker.simplezxing.activity.CaptureActivity;
+import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.google.gson.Gson;
 import com.googlecode.tesseract.android.TessBaseAPI;
 import com.joint.jointpolice.R;
@@ -109,6 +110,7 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
     private CollectFieldItem mLandlordCertificateTypeItem;
     private CollectFieldItem mLandlordCertificateNumberItem;
     private CollectFieldItem mLandlordNameItem;
+    private CollectFieldItem mLandlordPhoneItem;
     private CollectFieldItem mAgentCertificateTypeItem;
     private CollectFieldItem mAgentCertificateNumberItem;
     private CollectFieldItem mAgentNameItem;
@@ -238,10 +240,20 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         findView();
         mFlat = (Flat) getIntent().getSerializableExtra("Flat");
         if (mFlat != null) {
+            mCurrentSituationItem.setInputText(mFlat.getHouseStatus());
+            mIsRentingHouseItem.setInputText(mFlat.getIsRent() ? "是" : "否");
+            mHouseTypeItem.setInputText(mFlat.getHouseType());
             mHouseNatureItem.setInputText(mFlat.getHouseNature());
-            mHouseStructureItem.setInputText(mFlat.getHouseStructure());
-            mIsRentingHouseItem.setInputText("");
             mHousePurposeItem.setInputText(mFlat.getHousePurpose());
+            mHouseStructureItem.setInputText(mFlat.getHouseStructure());
+            mLandlordCertificateTypeItem.setInputText(mFlat.getLandlordCerType());
+            mLandlordCertificateNumberItem.setInputText(mFlat.getLandlordCerNo());
+            mLandlordNameItem.setInputText(mFlat.getLandlordName());
+            mLandlordPhoneItem.setInputText(mFlat.getLandlordPhone());
+            mAgentCertificateTypeItem.setInputText(mFlat.getAgentCerType());
+            mAgentCertificateNumberItem.setInputText(mFlat.getAgentCerNo());
+            mAgentNameItem.setInputText(mFlat.getAgentName());
+            mAgentPhoneItem.setInputText(mFlat.getAgentPhone());
         }
         initPicture();
     }
@@ -281,6 +293,11 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
                                         @Override
                                         public void onAfter() {
                                             dismissDialogProgress();
+                                        }
+
+                                        @Override
+                                        public void onBefore() {
+                                            showDialogProgress();
                                         }
 
                                         public void onError(Request request, Exception e) {
@@ -363,6 +380,7 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         mLandlordCertificateTypeItem = findViewById(R.id.item_landlord_certificate_type);
         mLandlordCertificateNumberItem = findViewById(R.id.item_landlord_certificate_number);
         mLandlordNameItem = findViewById(R.id.item_landlord_name);
+        mLandlordPhoneItem = findViewById(R.id.item_landlord_phone);
         mAgentCertificateTypeItem = findViewById(R.id.item_agent_certificate_type);
         mAgentCertificateNumberItem = findViewById(R.id.item_agent_certificate_number);
         mAgentNameItem = findViewById(R.id.item_agent_name);
@@ -383,10 +401,20 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
 
     private String buildData() {
         //todo 添加标准地址字段(通过扫码获取值)
+        mFlat.setHouseStatus(mCurrentSituationItem.getInputText());
+        mFlat.setIsRent(mIsRentingHouseItem.getInputText() == "是" ? true : false);
+        mFlat.setHouseType(mHouseTypeItem.getInputText());
         mFlat.setHouseNature(mHouseNatureItem.getInputText());
-        mFlat.setHouseStructure(mHouseStructureItem.getInputText());
-        mFlat.setIsRent(false);//暂时先默认false
         mFlat.setHousePurpose(mHousePurposeItem.getInputText());
+        mFlat.setHouseStructure(mHouseStructureItem.getInputText());
+        mFlat.setLandlordCerType(mLandlordCertificateTypeItem.getInputText());
+        mFlat.setLandlordCerNo(mLandlordCertificateNumberItem.getInputText());
+        mFlat.setLandlordName(mLandlordNameItem.getInputText());
+        mFlat.setLandlordPhone(mLandlordPhoneItem.getInputText());
+        mFlat.setAgentCerType(mAgentCertificateTypeItem.getInputText());
+        mFlat.setAgentCerNo(mAgentCertificateNumberItem.getInputText());
+        mFlat.setAgentName(mAgentNameItem.getInputText());
+        mFlat.setAgentPhone(mAgentPhoneItem.getInputText());
         //todo 页面上很多字段有待数据库添加
         SaveFlatParameter parameter = new SaveFlatParameter();
         List<FileModel> fileModels = new ArrayList<>();

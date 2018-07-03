@@ -63,7 +63,7 @@ public class CollectUnitActivity extends BaseCollectActivity<Enterprise>{
     private CollectFieldItem mUnitTypeItem;
     private CollectFieldItem mUnitUniformCodeItem;
     private CollectFieldItem mUnitLicenseNoItem;
-    private CollectFieldItem mUnitOcodeItem;
+    private CollectFieldItem mUnitOcodeItem;//组织机构代码
     private CollectFieldItem mUnitContactPhoneItem;
     private CollectFieldItem mUnitRemarkItem;
     private CollectFieldItem mUnitCorCerTypeItem;
@@ -108,10 +108,22 @@ public class CollectUnitActivity extends BaseCollectActivity<Enterprise>{
 
     @Override
     protected void bindData() {
-        mUnitTypeItem.setInputText(mEnterprise.getType());
-        mUnitPropertyItem.setInputText(mEnterprise.getProperty());
         mUnitNameItem.setInputText(mEnterprise.getName());
-        //todo
+        mUnitPropertyItem.setInputText(mEnterprise.getProperty());
+        mUnitTypeItem.setInputText(mEnterprise.getType());
+        mUnitUniformCodeItem.setInputText(mEnterprise.getUniformCode());
+        mUnitLicenseNoItem.setInputText(mEnterprise.getLicenseNo());
+        mUnitOcodeItem.setInputText(mEnterprise.getOcode());
+        mUnitContactPhoneItem.setInputText(mEnterprise.getContactPhone());
+        mUnitRemarkItem.setInputText(mEnterprise.getRemark());
+        mUnitCorCerTypeItem.setInputText(mEnterprise.getCorCerType());
+        mUnitCorCerNoItem.setInputText(mEnterprise.getCorCerNo());
+        mUnitCorNameItem.setInputText(mEnterprise.getCorName());
+        mUnitCorPhoneItem.setInputText(mEnterprise.getCorPhone());
+        mUnitChargeCerTypeItem.setInputText(mEnterprise.getChargeCerType());
+        mUnitChargeCerNoItem.setInputText(mEnterprise.getChargeCerNo());
+        mUnitChargeNameItem.setInputText(mEnterprise.getChargeName());
+        mUnitChargePhoneItem.setInputText(mEnterprise.getChargePhone());
     }
 
     @Override
@@ -151,19 +163,19 @@ public class CollectUnitActivity extends BaseCollectActivity<Enterprise>{
         enterprise.setName(mUnitNameItem.getInputText());
         enterprise.setProperty(mUnitPropertyItem.getInputText());
         enterprise.setType(mUnitTypeItem.getInputText());
-        enterprise.setType(mUnitUniformCodeItem.getInputText());
-        enterprise.setType(mUnitLicenseNoItem.getInputText());
-        enterprise.setType(mUnitOcodeItem.getInputText());
-        enterprise.setType(mUnitContactPhoneItem.getInputText());
-        enterprise.setType(mUnitRemarkItem.getInputText());
-        enterprise.setType(mUnitCorCerTypeItem.getInputText());
-        enterprise.setType(mUnitCorCerNoItem.getInputText());
-        enterprise.setType(mUnitCorNameItem.getInputText());
-        enterprise.setType(mUnitCorPhoneItem.getInputText());
-        enterprise.setType(mUnitChargeCerTypeItem.getInputText());
-        enterprise.setType(mUnitChargeCerNoItem.getInputText());
-        enterprise.setType(mUnitChargeNameItem.getInputText());
-        enterprise.setType(mUnitChargePhoneItem.getInputText());
+        enterprise.setUniformCode(mUnitUniformCodeItem.getInputText());
+        enterprise.setLicenseNo(mUnitLicenseNoItem.getInputText());
+        enterprise.setOcode(mUnitOcodeItem.getInputText());
+        enterprise.setContactPhone(mUnitContactPhoneItem.getInputText());
+        enterprise.setRemark(mUnitRemarkItem.getInputText());
+        enterprise.setCorCerType(mUnitCorCerTypeItem.getInputText());
+        enterprise.setCorCerNo(mUnitCorCerNoItem.getInputText());
+        enterprise.setCorName(mUnitCorNameItem.getInputText());
+        enterprise.setCorPhone(mUnitCorPhoneItem.getInputText());
+        enterprise.setChargeCerType(mUnitChargeCerTypeItem.getInputText());
+        enterprise.setChargeCerNo(mUnitChargeCerNoItem.getInputText());
+        enterprise.setChargeName(mUnitChargeNameItem.getInputText());
+        enterprise.setChargePhone(mUnitChargePhoneItem.getInputText());
     }
 
     @Override

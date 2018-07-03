@@ -166,7 +166,7 @@
                     android:id="@+id/item_unit_uniformCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入统一信用代码"
                     custom:tv_text="统一信用\n代&#12288;&#12288;码"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -174,7 +174,7 @@
                     android:id="@+id/item_unit_licenseNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入营业执照号"
                     custom:tv_text="营&#8194;业&#8194;执\n照&#12288;&#12288;号"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -182,7 +182,7 @@
                     android:id="@+id/item_unit_ocode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入组织机构代码"
                     custom:tv_text="组织机构\n代&#12288;&#12288;码"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -190,7 +190,7 @@
                     android:id="@+id/item_unit_contactPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入电话"
                     custom:tv_text="电&#12288;&#12288;话"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -198,7 +198,7 @@
                     android:id="@+id/item_unit_remark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入备注"
                     custom:tv_text="备&#12288;&#12288;注"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -220,7 +220,7 @@
                     android:id="@+id/item_unit_corCerType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请选择证件类型"
                     custom:tv_text="证件类型"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -228,7 +228,7 @@
                     android:id="@+id/item_unit_corCerNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入证件号码"
                     custom:tv_text="证件号码"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -236,7 +236,7 @@
                     android:id="@+id/item_unit_corName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入姓名"
                     custom:tv_text="姓&#12288;&#12288;名"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -244,7 +244,7 @@
                     android:id="@+id/item_unit_corPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入联系方式"
                     custom:tv_text="联系方式"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
@@ -275,7 +275,7 @@
                     android:id="@+id/item_unit_chargeCerNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入证件号码"
                     custom:tv_star_visible="VISIBLE"
                     custom:tv_text="证件号码"></com.joint.jointpolice.widget.custom.CollectFieldItem>
@@ -284,7 +284,7 @@
                     android:id="@+id/item_unit_chargeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入姓名"
                     custom:tv_star_visible="VISIBLE"
                     custom:tv_text="姓名"></com.joint.jointpolice.widget.custom.CollectFieldItem>
@@ -293,7 +293,7 @@
                     android:id="@+id/item_unit_chargePhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    custom:edt_focusable="false"
+                    custom:edt_focusable="true"
                     custom:edt_hint="请输入联系方式"
                     custom:tv_star_visible="VISIBLE"
                     custom:tv_text="联系方式"></com.joint.jointpolice.widget.custom.CollectFieldItem>

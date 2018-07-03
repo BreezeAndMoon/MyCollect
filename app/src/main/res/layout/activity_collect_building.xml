@@ -250,7 +250,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="invisible"
+                        >
 
                         <TextView
                             android:layout_weight="1"
@@ -262,7 +264,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:background="@color/red"
                             android:textColor="@color/white"
                             android:textOff="关注"
                             android:textOn="正常" />

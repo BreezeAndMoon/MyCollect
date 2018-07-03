@@ -3,6 +3,7 @@ package com.joint.jointpolice.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.joint.jointpolice.activity.collect.CollectUnitActivity;
 import com.joint.jointpolice.common.BaseRecycleAdapter;
 import com.joint.jointpolice.common.RecycleViewHolder;
 import com.joint.jointpolice.model.CollectModels.Enterprise;
+import com.joint.jointpolice.util.StringUtil;
 
 import static com.joint.jointpolice.util.DateUtil.formatDate;
 
@@ -43,9 +45,9 @@ public class ActualUnitAdapter extends BaseRecycleAdapter<Enterprise> {
     @Override
     public void getItemView(RecycleViewHolder viewHolder, int position, Enterprise item) {
         TextView nameTextView = viewHolder.getView(R.id.tv_unit_name);
-        nameTextView.setText(mNameHint + item.getName());
+        nameTextView.setText(mNameHint + StringUtil.formatString(item.getName()));
         TextView typeTextView = viewHolder.getView(R.id.tv_unit_type);
-        typeTextView.setText(mTypeHint + item.getType());
+        typeTextView.setText(mTypeHint + StringUtil.formatString(item.getType()));
         TextView timeTextView = viewHolder.getView(R.id.tv_update_time);
         timeTextView.setText(mTimeHint + formatDate(item.getModifyDate()));
         viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {

@@ -92,19 +92,22 @@ public class CollectCisborderPersonActivity extends BaseCollectActivity<PersonIn
 
     @Override
     protected void bindData() {
-        mNameItem.setInputText(mPerson.getName());
+        mHealth = mPerson.getHealthStatus();
         mIdNumberItem.setInputText(mPerson.getCardNo());
+        mNameItem.setInputText(mPerson.getName());
         mTelephoneItem.setInputText(mPerson.getTelephone());
         mLiveCauseItem.setInputText(mPerson.getLiveCause());
-        mLiveTimeItem.setInputText(mPerson.getLiveDate() == null ? "" : DateUtil.formatDate(mPerson.getLiveDate()));//todo 测试Date的json序列化
-        //mLivePlaceItem.setInputText(mPerson.getLivePlace());todo 数据库待添加该字段
+        mLiveTimeItem.setInputText(mPerson.getLiveDate() == null ? "" : DateUtil.formatDate(mPerson.getLiveDate()));
+        mLivePlaceItem.setInputText(mPerson.getLivePlace());
         mSexItem.setInputText(mPerson.getSex());
         mNationItem.setInputText(mPerson.getNature());
+        mRoommateRelationItem.setInputText(mPerson.getRoommateRelation());
+        mProvinceCityItem.setInputText(mPerson.getProvinceAndCity());
+        mNativePlaceAddressItem.setInputText(mPerson.getDetailNativeAdd());
         mServicePlaceItem.setInputText(mPerson.getServicePlace());
-
-
+        mProfessionItem.setInputText(mPerson.getProfession());
         mHealth = mPerson.getHealthStatus();
-        if (mHealth == "正常") {
+        if (mHealth.equals("正常")) {
             mHealthRadioGroup.check(R.id.radiobtn_normal);
         } else
             mHealthRadioGroup.check(R.id.radiobtn_psychosis);
@@ -142,9 +145,14 @@ public class CollectCisborderPersonActivity extends BaseCollectActivity<PersonIn
         person.setTelephone(mTelephoneItem.getInputText());
         person.setLiveCause(mLiveCauseItem.getInputText());
         person.setLiveDate(DateUtil.dateStr2Timestamp(mLiveTimeItem.getInputText()));
+        person.setLivePlace(mLivePlaceItem.getInputText());
         person.setSex(mSexItem.getInputText());
         person.setNature(mNationItem.getInputText());
+        person.setRoommateRelation(mRoommateRelationItem.getInputText());
+        person.setProvinceAndCity(mProvinceCityItem.getInputText());
+        person.setDetailNativeAdd(mNativePlaceAddressItem.getInputText());
         person.setServicePlace(mServicePlaceItem.getInputText());
+        person.setProfession(mProfessionItem.getInputText());
         person.setHealthStatus(mHealth);
     }
 

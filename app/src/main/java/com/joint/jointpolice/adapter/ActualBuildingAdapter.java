@@ -12,6 +12,7 @@ import com.joint.jointpolice.activity.collect.CollectBuildingActivity;
 import com.joint.jointpolice.common.BaseRecycleAdapter;
 import com.joint.jointpolice.common.RecycleViewHolder;
 import com.joint.jointpolice.model.CollectModels.Flat;
+import com.joint.jointpolice.util.StringUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,9 +49,9 @@ public class ActualBuildingAdapter extends BaseRecycleAdapter<Flat> {
     @Override
     public void getItemView(RecycleViewHolder viewHolder, int position, Flat item) {
         TextView natureTextView = viewHolder.getView(R.id.tv_house_nature);
-        natureTextView.setText(mNatureHint + item.getHouseNature());
+        natureTextView.setText(mNatureHint + StringUtil.formatString(item.getHouseNature()));
         TextView typeTextView = viewHolder.getView(R.id.tv_house_type);
-        typeTextView.setText(mTypeHint + item.getHouseType());
+        typeTextView.setText(mTypeHint +StringUtil.formatString(item.getHouseType()));
         TextView timeTextView = viewHolder.getView(R.id.tv_update_time);
         timeTextView.setText(mTimeHint + formatDate(item.getModifyDate()));
         viewHolder.getConvertView().setOnClickListener(new View.OnClickListener() {

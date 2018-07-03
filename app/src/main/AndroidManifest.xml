@@ -32,7 +32,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.Main2Activity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -110,7 +110,9 @@
         <!-- <activity android:name=".activity.collect.NormalPersonActivity"/> -->
         <!-- <activity android:name=".activity.collect.TempPersonActivity" /> -->
         <activity android:name=".activity.collect.CollectDoorplateActivity" />
-        <activity android:name=".activity.collect.CollectNodoorPersonActivity" />
+        <activity
+            android:name=".activity.collect.CollectNodoorPersonActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activity.collect.CollectUnitActivity"
             android:windowSoftInputMode="adjustNothing" />
@@ -121,7 +123,8 @@
             android:name=".activity.collect.CollectOutboundPersonActivity"
             android:windowSoftInputMode="adjustNothing" />
 
-        <!-- <activity android:name=".activity.Main2Activity"></activity> -->
+        <activity android:name=".activity.Main2Activity"></activity>
+
         <service
             android:name=".services.ResetCollectCountService"
             android:enabled="true"

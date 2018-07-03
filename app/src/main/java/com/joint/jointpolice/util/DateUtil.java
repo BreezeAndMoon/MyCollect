@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -37,9 +39,11 @@ public class DateUtil {
     }
 
     public static String dateStr2Timestamp(String dateStr) {
+        if (TextUtils.isEmpty(dateStr))
+            return null;
         Date date = parseDate(dateStr);
-        String timestamp =String.valueOf ((date.getTime()));
-        String formatTimestamp = "/Date("+timestamp+"+0800)/";
+        String timestamp = String.valueOf((date.getTime()));
+        String formatTimestamp = "/Date(" + timestamp + "+0800)/";
         return formatTimestamp;
     }
 

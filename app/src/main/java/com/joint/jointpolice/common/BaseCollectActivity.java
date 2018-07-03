@@ -170,6 +170,18 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
             case R.id.item_live_time:
                 mTimePickerView.show();
                 break;
+            case R.id.item_birth_date:
+                mTimePickerView.show();
+                break;
+            case R.id.item_stay_expiration_date:
+                mTimePickerView.show();
+                break;
+            case R.id.item_certificate_expiration_date:
+                mTimePickerView.show();
+                break;
+            case R.id.item_enter_country_date:
+                mTimePickerView.show();
+                break;
         }
     }
 

@@ -172,7 +172,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
                         .setWidth(DensityUtil.dp2px(this,232))
                         .setCancelTouchout(true)
                         .Build();
-                myCustomDialog.show();
+                //myCustomDialog.show();
                 break;
         }
     }

@@ -290,6 +290,7 @@
                         android:id="@+id/item_certificate_expiration_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        custom:edt_focusable="false"
                         custom:edt_hint="请选择证件有效期限"
                         custom:tv_text="证&#12288;&#12288;件\n有效期限"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 

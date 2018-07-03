@@ -479,7 +479,7 @@ public class Person implements Serializable {
         this.certificateNo = certificateNo;
     }
 
-    public boolean isLiveMonth() {
+    public boolean getLiveMonth() {
         return liveMonth;
     }
 
