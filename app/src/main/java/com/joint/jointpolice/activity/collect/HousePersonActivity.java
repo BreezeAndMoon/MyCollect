@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.joint.jointpolice.R;
-import com.joint.jointpolice.adapter.HousePersonAdapter;
+import com.joint.jointpolice.adapter.AddressAdapter;
 import com.joint.jointpolice.common.BaseActivity;
 import com.joint.jointpolice.model.CollectModels.Person;
 
@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 public class HousePersonActivity extends BaseActivity implements View.OnClickListener {
-    HousePersonAdapter mHousePersonAdapter;
+    AddressAdapter mAddressAdapter;
     List<Person> mPersonList;
     RecyclerView mRecyclerView;
 
@@ -35,9 +35,9 @@ public class HousePersonActivity extends BaseActivity implements View.OnClickLis
         findViewById(R.id.tv_add_normal_person).setOnClickListener(this);
         findViewById(R.id.tv_add_temp_person).setOnClickListener(this);
         mRecyclerView = findViewById(R.id.recy_house_person);
-        mHousePersonAdapter = new HousePersonAdapter(this);
+        mAddressAdapter = new AddressAdapter(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //mRecyclerView.setAdapter(mHousePersonAdapter);
+        //mRecyclerView.setAdapter(mAddressAdapter);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class HousePersonActivity extends BaseActivity implements View.OnClickLis
             person.setName("张三");
             mPersonList.add(person);
         }
-       // mHousePersonAdapter.setDataSource(mPersonList);
+       // mAddressAdapter.setDataSource(mPersonList);
     }
 
     @Override

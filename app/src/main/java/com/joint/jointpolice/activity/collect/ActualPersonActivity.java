@@ -3,6 +3,7 @@ package com.joint.jointpolice.activity.collect;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -45,6 +46,8 @@ public class ActualPersonActivity extends BaseActivity implements View.OnClickLi
     int mFlatID;
     boolean mIsPause;
     Gson mGson = new Gson();
+    FloatingActionButton mAddFab;
+    int mFabVisibility = View.VISIBLE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState, String tag) {
@@ -54,7 +57,9 @@ public class ActualPersonActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initView() {
         ((TextView) findViewById(R.id.toolbar_tv_title)).setText("实有人口");
-        findViewById(R.id.fab_add).setOnClickListener(this);
+        mAddFab = findViewById(R.id.fab_add);
+        mAddFab.setVisibility(mFabVisibility);
+        mAddFab.setOnClickListener(this);
         mSmartRefresh = findViewById(R.id.smart_refresh);
         mSmartRefresh.setOnRefreshListener(this);
         mBottomSheetDialog = new BottomSheetDialog(this);
@@ -128,6 +133,7 @@ public class ActualPersonActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void updateList() {
+        //todo 需要根据条件重新搜索一遍来刷新
         String jsonStr = String.valueOf(mFlatID);
         OkHttpClientManager.postAsyn(getResources().getString(R.string.get_persons_byflatid_url), jsonStr, new OkHttpClientManager.ResultCallback<List<Person>>() {
                     @Override
@@ -146,35 +152,33 @@ public class ActualPersonActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void bindRecyclerView() {
-        Flat flat = (Flat) getIntent().getSerializableExtra("Flat");
-        if (flat == null)
-            return;
-        mFlatID = (int) flat.getId();
-        String jsonStr = String.valueOf(mFlatID);
-        OkHttpClientManager.postAsyn(getResources().getString(R.string.get_persons_byflatid_url), jsonStr, new OkHttpClientManager.ResultCallback<List<Person>>() {
-            @Override
-            public void onResponse(List<Person> response) {
-                mActualPersonAdapter = new ActualPersonAdapter(ActualPersonActivity.this);
-                mActualPersonAdapter.setDataSource(response);
-                mRecyclerView = findViewById(R.id.recy_actual_person);
-                SwipeRecyclerViewUtil.setSwipeMenu(ActualPersonActivity.this, mRecyclerView);
-                SwipeRecyclerViewUtil.setOnItemClick(mRecyclerView, (positionID) -> {
-                    deleteItem(positionID);
-                });
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(ActualPersonActivity.this));
-                mRecyclerView.setAdapter(mActualPersonAdapter);
-            }
+        List<Person> list = (List<Person>) getIntent().getSerializableExtra(Constant.SEARCH_RESULT);
+        if (list != null && list.size() > 0) {
+            initRecyclerView(list);
+            mFabVisibility = View.INVISIBLE;//隐藏添加按钮
+        } else {
+            Flat flat = (Flat) getIntent().getSerializableExtra("Flat");
+            if (flat == null)
+                return;
+            mFlatID = (int) flat.getId();
+            String jsonStr = String.valueOf(mFlatID);
+            OkHttpClientManager.postAsyn(getResources().getString(R.string.get_persons_byflatid_url), jsonStr, new OkHttpClientManager.ResultCallback<List<Person>>() {
+                @Override
+                public void onResponse(List<Person> response) {
+                    initRecyclerView(response);
+                }
 
-            @Override
-            public void onBefore() {
-                showDialogProgress();
-            }
+                @Override
+                public void onBefore() {
+                    showDialogProgress();
+                }
 
-            @Override
-            public void onAfter() {
-                dismissDialogProgress();
-            }
-        });
+                @Override
+                public void onAfter() {
+                    dismissDialogProgress();
+                }
+            });
+        }
     }
 
     private void deleteItem(int positionID) {
@@ -198,6 +202,18 @@ public class ActualPersonActivity extends BaseActivity implements View.OnClickLi
                 dismissDialogProgress();
             }
         });
+    }
+
+    private void initRecyclerView(List<Person> personList) {
+        mActualPersonAdapter = new ActualPersonAdapter(ActualPersonActivity.this);
+        mActualPersonAdapter.setDataSource(personList);
+        mRecyclerView = findViewById(R.id.recy_actual_person);
+        SwipeRecyclerViewUtil.setSwipeMenu(ActualPersonActivity.this, mRecyclerView);
+        SwipeRecyclerViewUtil.setOnItemClick(mRecyclerView, (positionID) -> {
+            deleteItem(positionID);
+        });
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(ActualPersonActivity.this));
+        mRecyclerView.setAdapter(mActualPersonAdapter);
     }
 
     private String buildDeleteParamJson(long personID) {

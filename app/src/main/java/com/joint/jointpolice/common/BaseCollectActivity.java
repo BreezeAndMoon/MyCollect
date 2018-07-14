@@ -63,7 +63,7 @@ import static com.joint.jointpolice.util.SpUtil.get;
  * Created by Joint229 on 2018/6/7.
  */
 
-public abstract class BaseCollectActivity<T> extends BaseActivity implements View.OnClickListener,CollectFieldItem.OnEditTextClickListener {
+public abstract class BaseCollectActivity<T> extends BaseActivity implements View.OnClickListener, CollectFieldItem.OnEditTextClickListener {
     protected PictureSelectUtil imgSelectUtil;
     protected int themeId = R.style.picture_default_style;
     protected int chooseMode = PictureMimeType.ofAll();
@@ -191,9 +191,12 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
             if (mEntity.getClass() == PersonInfo.class) {
                 Flat flat = (Flat) getIntent().getSerializableExtra(Constant.Flat);
                 ((PersonInfo) mEntity).setTableName(Constant.T_PERSON);//重写的buildEntity中不用再设置tablename
+                //todo:PersonInfo需要传Flat，但是通过搜索结果跳转过来的没有在intent中传递flat，需要判断上面flat是否为空，为null则根据personid获取flat的接口获取flat，暂时没有接口,单位的不需要
                 ((PersonInfo) mEntity).setFlat(flat);//重写的buildEntity中不用再设置flat
-            }
-            buildEntity(mEntity);
+                ((PersonInfo) mEntity).getPerson().setModifyDate(null);//时间服务端会更新,这里不需要更新
+            } else
+                ((Enterprise) mEntity).setModifyDate(null);
+                buildEntity(mEntity);
         } else {
             try {
                 mEntity = getType().newInstance();
@@ -359,6 +362,12 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
                 String filePath = localMedia.getCompressPath();
                 OkHttpClientManager.postFileAsyn(getResources().getString(R.string.upload_file_url), filePath, new OkHttpClientManager.ResultCallback<String>() {
                     @Override
+                    public void onError(Request request, Exception e) {
+                        super.onError(request, e);
+                        dismissDialogProgress();
+                    }
+
+                    @Override
                     public void onResponse(String response) {
                         String path = response.replace("\"", "").replace("\\", "");
                         mRelativePicPath.add(path);
@@ -380,18 +389,7 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
                                 }
 
                                 public void onError(Request request, Exception e) {
-                                    if (e instanceof SocketTimeoutException) {
-                                        LUtils.toast("连接超时");
-                                    }
-                                    if (e instanceof ConnectException) {
-                                        LUtils.toast("连接异常");
-                                    }
-                                    if (e instanceof com.google.gson.JsonParseException) {
-                                        LUtils.toast("解析异常");
-                                    } else {
-                                        LUtils.toast("请求失败");
-                                    }
-                                    LUtils.log(e.getMessage());//打印异常日志
+                                    super.onError(request, e);
                                     mRelativePicPath.clear();//失败后必须清空列表
                                 }
                             });
@@ -415,7 +413,6 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
                 }
             });
         }
-        dismissDialogProgress();
     }
 
     protected abstract void findView();

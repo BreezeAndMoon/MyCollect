@@ -23,11 +23,11 @@ import io.reactivex.internal.operators.flowable.FlowableSkipLastTimed;
  * Created by Joint229 on 2018/4/16.
  */
 
-public class HousePersonAdapter extends BaseRecycleAdapter<Flat> {
+public class AddressAdapter extends BaseRecycleAdapter<Flat> {
     Context mContext;
     public int mSelectedPosition;
 
-    public HousePersonAdapter(Context context) {
+    public AddressAdapter(Context context) {
         super(context);
         mContext = context;
     }
@@ -46,6 +46,7 @@ public class HousePersonAdapter extends BaseRecycleAdapter<Flat> {
         viewHolder.getConvertView().setOnClickListener(view -> {
             mSelectedPosition = position;
             Intent newIntent = new Intent();
+            item.setModifyDate(item.getModifyDate().replace("\\",""));//需要满足传递所需的MicrosoftDateFormat时间格式
             newIntent.putExtra("Flat", item);
             newIntent.putExtra(Constant.CollectType, type);
             switch (type) {

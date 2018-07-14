@@ -31,4 +31,5 @@ public class Constant {
     public static final int Person_Outbound = 6;//境外
     public static final int Person_Nodoor = 7;//无户
     public static final String T_PERSON = "T_Person";
+    public static final String SEARCH_RESULT="SearchResult";
 }

@@ -22,11 +22,12 @@ public class UserTextWatcher implements TextWatcher {
 
     public  UserTextWatcher(Button button, TextView... editTexts) {
         this.mButton = button;
-        this.mEditText = editTexts;
-        mEditText = new TextView[editTexts.length];
-        for(int i=0;i<editTexts.length;i++) {
-            mEditText[i] = editTexts[i];
-        }
+        this.mEditText = editTexts;mEditText = editTexts;
+//        mEditText = new TextView[editTexts.length];
+//        for(int i=0;i<editTexts.length;i++) {
+//            mEditText[i] = editTexts[i];
+//        }
+        mEditText = editTexts;
     }
 
     @Override

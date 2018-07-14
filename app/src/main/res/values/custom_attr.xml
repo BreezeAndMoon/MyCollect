@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CollectItem">
-        <attr name="text" format="string"/>
-        <attr name="hint" format="string"/>
+        <attr name="text" format="string" />
+        <attr name="hint" format="string" />
     </declare-styleable>
     <declare-styleable name="CollectFieldItem">
-        <attr name="tv_text" format="string"/>
-        <attr name="edt_hint" format="string"/>
-        <attr name="edt_focusable" format="boolean"/>
+        <attr name="tv_text" format="string" />
+        <attr name="edt_hint" format="string" />
+        <attr name="edt_focusable" format="boolean" />
         <attr name="tv_star_visible" format="enum">
+            <enum name="VISIBLE" value="0" />
+            <enum name="INVISIBLE" value="4" />
+            <enum name="GONE" value="8" />
+        </attr>
+        <attr name="ic_photo_visiable" format="enum" >
             <enum name="VISIBLE" value="0"/>
-            <enum name="INVISIBLE" value="4"/>
-            <enum name="GONE" value="8"/>
+            <enum name="INVISIBLE" value="4" />
+            <enum name="GONE" value="8" />
         </attr>
     </declare-styleable>
 </resources>

@@ -20,6 +20,7 @@ import com.joint.jointpolice.constants.Constant;
 import com.joint.jointpolice.model.CollectModels.Flat;
 import com.joint.jointpolice.model.CollectModels.Person;
 import com.joint.jointpolice.util.Id2StringUtil;
+import com.joint.jointpolice.util.LUtils;
 import com.joint.jointpolice.util.StringUtil;
 
 import static com.joint.jointpolice.util.DateUtil.formatDate;
@@ -73,6 +74,9 @@ public class ActualPersonAdapter extends BaseRecycleAdapter<Person> {
                     case Constant.Person_Nodoor:
                         intent.setClass(mContext, CollectNodoorPersonActivity.class);
                         break;
+                    default:
+                        LUtils.toast("该数据非采集数据");
+                        return;
                 }
                 mContext.startActivity(intent);
             }

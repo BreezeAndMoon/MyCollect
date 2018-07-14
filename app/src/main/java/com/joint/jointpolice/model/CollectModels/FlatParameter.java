@@ -9,6 +9,33 @@ public class FlatParameter {
     int pageSize;
     String searchInfo;
     int ID;
+    int searchType;
+    String btime;
+    String etime;
+
+    public int getSearchType() {
+        return searchType;
+    }
+
+    public void setSearchType(int searchType) {
+        this.searchType = searchType;
+    }
+
+    public String getBtime() {
+        return btime;
+    }
+
+    public void setBtime(String btime) {
+        this.btime = btime;
+    }
+
+    public String getEtime() {
+        return etime;
+    }
+
+    public void setEtime(String etime) {
+        this.etime = etime;
+    }
 
     public int getID() {
         return ID;

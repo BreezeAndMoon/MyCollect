@@ -2,6 +2,7 @@ package com.joint.jointpolice.activity.collect;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -41,6 +42,8 @@ public class ActualUnitActivity extends BaseActivity implements View.OnClickList
     boolean mIsPause;
     int mFlatID;
     Gson mGson = new Gson();
+    int mFabVisibility = View.VISIBLE;
+    FloatingActionButton mAddFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState, String tag) {
@@ -50,7 +53,9 @@ public class ActualUnitActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void initView() {
         ((TextView) findViewById(R.id.toolbar_tv_title)).setText("实有单位");
-        findViewById(R.id.fab_add).setOnClickListener(this);
+        mAddFab =findViewById(R.id.fab_add);
+        mAddFab.setOnClickListener(this);
+        mAddFab.setVisibility(mFabVisibility);
         mSmartRefresh = findViewById(R.id.smart_refresh);
         mSmartRefresh.setOnRefreshListener(this);
     }
@@ -109,36 +114,33 @@ public class ActualUnitActivity extends BaseActivity implements View.OnClickList
     }
 
     private void bindRecycleView() {
-        Flat flat = (Flat) getIntent().getSerializableExtra("Flat");
-        if (flat == null)
-            return;
-        mFlatID = (int) flat.getId();
-        String jsonStr = String.valueOf(mFlatID);
-        OkHttpClientManager.postAsyn(getResources().getString(R.string.get_unit_byflatid_url), jsonStr, new OkHttpClientManager.ResultCallback<List<Enterprise>>() {
-            @Override
-            public void onResponse(List<Enterprise> response) {
-                mActualUnitAdapter = new ActualUnitAdapter(ActualUnitActivity.this);
-                mActualUnitAdapter.setDataSource(response);
-                mRecyclerView = findViewById(R.id.recy_actual_unit);
-                SwipeRecyclerViewUtil.setSwipeMenu(ActualUnitActivity.this, mRecyclerView);
-                SwipeRecyclerViewUtil.setOnItemClick(mRecyclerView, (positionID) -> {
-                    deleteItem(positionID);
-                });
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(ActualUnitActivity.this));
-                mRecyclerView.setAdapter(mActualUnitAdapter);
-            }
+        List<Enterprise> list = (List<Enterprise>) getIntent().getSerializableExtra(Constant.SEARCH_RESULT);
+        if (list != null && list.size() > 0) {
+            initRecyclerView(list);
+            mFabVisibility = View.INVISIBLE;//隐藏添加按钮
+        } else {
+            Flat flat = (Flat) getIntent().getSerializableExtra("Flat");
+            if (flat == null)
+                return;
+            mFlatID = (int) flat.getId();
+            String jsonStr = String.valueOf(mFlatID);
+            OkHttpClientManager.postAsyn(getResources().getString(R.string.get_unit_byflatid_url), jsonStr, new OkHttpClientManager.ResultCallback<List<Enterprise>>() {
+                @Override
+                public void onResponse(List<Enterprise> response) {
+                    initRecyclerView(response);
+                }
 
-            @Override
-            public void onBefore() {
-                showDialogProgress();
-            }
+                @Override
+                public void onBefore() {
+                    showDialogProgress();
+                }
 
-            @Override
-            public void onAfter() {
-                dismissDialogProgress();
-            }
-        });
-
+                @Override
+                public void onAfter() {
+                    dismissDialogProgress();
+                }
+            });
+        }
     }
 
     private void deleteItem(int positionID) {
@@ -162,6 +164,18 @@ public class ActualUnitActivity extends BaseActivity implements View.OnClickList
                 dismissDialogProgress();
             }
         });
+    }
+
+    private void initRecyclerView(List<Enterprise> enterpriseList) {
+        mActualUnitAdapter = new ActualUnitAdapter(ActualUnitActivity.this);
+        mActualUnitAdapter.setDataSource(enterpriseList);
+        mRecyclerView = findViewById(R.id.recy_actual_unit);
+        SwipeRecyclerViewUtil.setSwipeMenu(ActualUnitActivity.this, mRecyclerView);
+        SwipeRecyclerViewUtil.setOnItemClick(mRecyclerView, (positionID) -> {
+            deleteItem(positionID);
+        });
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(ActualUnitActivity.this));
+        mRecyclerView.setAdapter(mActualUnitAdapter);
     }
 
     private String buildDeleteParamJson(long enterpriseID) {

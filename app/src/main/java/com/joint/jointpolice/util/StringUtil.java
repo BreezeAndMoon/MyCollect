@@ -10,4 +10,8 @@ public class StringUtil {
     public static String formatString(String str) {
         return TextUtils.isEmpty(str) ? "" : str;
     }
+
+    public static String formatJsonString(String jsonStr) {
+        return jsonStr.substring(jsonStr.indexOf("{"),jsonStr.lastIndexOf("}")+1) .replace("\\\"","\"");
+    }
 }

@@ -274,6 +274,11 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
                         String filePath = localMedia.getCompressPath();
                         OkHttpClientManager.postFileAsyn(getResources().getString(R.string.upload_file_url), filePath, new OkHttpClientManager.ResultCallback<String>() {
                             @Override
+                            public void onError(Request request, Exception e){
+                                super.onError(request, e);
+                                dismissDialogProgress();
+                            }
+                            @Override
                             public void onResponse(String response) {//返回的是"\/Upload\/temp\/15a6f1fa-f0df-4251-94f8-0029e2b43931.jpg",所以要做处理,否则保存到数据库也是该数据
                                 String path = response.replace("\"", "").replace("\\", "");
                                 mRelativePicPath.add(path);
@@ -301,18 +306,7 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
                                         }
 
                                         public void onError(Request request, Exception e) {
-                                            if (e instanceof SocketTimeoutException) {
-                                                LUtils.toast("连接超时");
-                                            }
-                                            if (e instanceof ConnectException) {
-                                                LUtils.toast("连接异常");
-                                            }
-                                            if (e instanceof com.google.gson.JsonParseException) {
-                                                LUtils.toast("解析异常");
-                                            } else {
-                                                LUtils.toast("请求失败");
-                                            }
-                                            LUtils.log(e.getMessage());//打印异常日志
+                                            super.onError(request,e);
                                             mRelativePicPath.clear();//失败后必须清空列表
                                         }
                                     });
@@ -337,7 +331,6 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
                         }
                     });
                 }
-                dismissDialogProgress();
                 break;
         }
     }
@@ -415,6 +408,7 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         mFlat.setAgentCerNo(mAgentCertificateNumberItem.getInputText());
         mFlat.setAgentName(mAgentNameItem.getInputText());
         mFlat.setAgentPhone(mAgentPhoneItem.getInputText());
+        mFlat.setModifyDate(null);//服务端先转成json再返回string的，所转的格式不符合上传的格式，且不需要保存，该时间服务端会存
         //todo 页面上很多字段有待数据库添加
         SaveFlatParameter parameter = new SaveFlatParameter();
         List<FileModel> fileModels = new ArrayList<>();

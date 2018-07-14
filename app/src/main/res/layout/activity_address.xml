@@ -44,9 +44,10 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/bdp_10"
             android:layout_marginRight="@dimen/bdp_10"
+            android:padding="@dimen/bdp_5"
             android:layout_weight="1"
             android:background="@drawable/bg_serachview"
-            android:hint="请输入关键字查询"/>
+            android:hint="请输入地址"/>
 
         <Button
             android:id="@+id/btn_search"

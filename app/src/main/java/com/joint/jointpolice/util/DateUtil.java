@@ -54,11 +54,21 @@ public class DateUtil {
     }
 
     public static String formatDate(String dateStr) {
-        dateStr = dateStr.replace("/Date(", "").replace(")/", "");
-        String time = dateStr.substring(0, dateStr.length() - 5);
-        Date date = new Date(Long.parseLong(time));
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.format(date);
+        if (TextUtils.isEmpty(dateStr))
+            return "";
+        if (dateStr.contains("Date")) {
+            dateStr = dateStr.replace("\\","");
+            dateStr = dateStr.replace("/Date(", "").replace(")/", "");
+            String time = dateStr.substring(0, dateStr.length() - 5);
+            Date date = new Date(Long.parseLong(time));
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            return format.format(date);
+        } else if (dateStr.contains("T")) {
+            return dateStr.substring(0, dateStr.indexOf("T"));//服务端返回的是其已经转过的json串时返回的时间格式为：2018-04-08T13:37:28
+        } else {
+            return dateStr;
+        }
+
     }
 
     public static void setSysTime(Context context, int hour, int minute) {
