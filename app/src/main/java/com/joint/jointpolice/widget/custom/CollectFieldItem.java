@@ -28,7 +28,7 @@ public class CollectFieldItem extends LinearLayout implements View.OnClickListen
     private EditText mEditText;
     private OnEditTextClickListener mOnEditTextClickListener;
     private Drawable mPhotoDrawable;
-
+    private OnEditTextPhotoTouchListener mOnEditTextPhotoTouchListener;
     public CollectFieldItem(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.layout_collect_field, this);
@@ -57,9 +57,11 @@ public class CollectFieldItem extends LinearLayout implements View.OnClickListen
                     int eventY = (int) event.getRawY();
                     Rect rect = new Rect();
                     getGlobalVisibleRect(rect);
-                    rect.left = rect.right - mPhotoDrawable.getBounds().width();
+                    int photoWidth = mPhotoDrawable.getBounds().width();
+                    rect.left = rect.right - photoWidth;
                     if (rect.contains(eventX, eventY))
-                        LUtils.toast("触摸成功");
+                        if(mOnEditTextPhotoTouchListener!=null)
+                            mOnEditTextPhotoTouchListener.onEditTextPhotoTouch(v);
                 }
                 return false;
             }
@@ -88,7 +90,12 @@ public class CollectFieldItem extends LinearLayout implements View.OnClickListen
         mOnEditTextClickListener = onEditTextClickListener;
         mEditText.setTag(this.getId());
     }
-
+    public interface OnEditTextPhotoTouchListener{
+        void onEditTextPhotoTouch(View view);
+}
+    public void setOnEditTextPhotoTouchListener(OnEditTextPhotoTouchListener onEditTextPhotoTouchListener){
+        mOnEditTextPhotoTouchListener = onEditTextPhotoTouchListener;
+    }
     @Override
     public void onClick(View v) {
         if (mOnEditTextClickListener != null) {
@@ -96,18 +103,18 @@ public class CollectFieldItem extends LinearLayout implements View.OnClickListen
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (mPhotoDrawable != null && event.getAction() == MotionEvent.ACTION_UP) {
-            int eventX = (int) event.getRawX();
-            int eventY = (int) event.getRawY();
-            Rect rect = new Rect();
-            rect.left = rect.right - mPhotoDrawable.getBounds().width();
-            if (rect.contains(eventX, eventY))
-                LUtils.toast("触摸成功");
-        }
-        return super.onTouchEvent(event);
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        if (mPhotoDrawable != null && event.getAction() == MotionEvent.ACTION_UP) {
+//            int eventX = (int) event.getRawX();
+//            int eventY = (int) event.getRawY();
+//            Rect rect = new Rect();
+//            rect.left = rect.right - mPhotoDrawable.getBounds().width();
+//            if (rect.contains(eventX, eventY))
+//                LUtils.toast("触摸成功2");
+//        }
+//        return super.onTouchEvent(event);
+//    }
 
     public void setPhotoVisible(boolean photoVisible) {
         mEditText.setCompoundDrawablesWithIntrinsicBounds(null, null, photoVisible == true ? mPhotoDrawable: null, null);
