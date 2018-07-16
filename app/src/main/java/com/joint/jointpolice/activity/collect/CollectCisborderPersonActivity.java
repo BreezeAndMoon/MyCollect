@@ -122,7 +122,7 @@ public class CollectCisborderPersonActivity extends BaseCollectActivity<PersonIn
                 mHealth = radioButton.getText().toString();
             }
         });
-        findViewById(R.id.tv_scan_id_card).setOnClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_id_number)).setOnEditTextPhotoTouchListener(this);
         ((CollectFieldItem) findViewById(R.id.item_live_time)).setOnEditTextClickListener(this);
     }
 

@@ -63,7 +63,7 @@ import static com.joint.jointpolice.util.SpUtil.get;
  * Created by Joint229 on 2018/6/7.
  */
 
-public abstract class BaseCollectActivity<T> extends BaseActivity implements View.OnClickListener, CollectFieldItem.OnEditTextClickListener {
+public abstract class BaseCollectActivity<T> extends BaseActivity implements View.OnClickListener, CollectFieldItem.OnEditTextClickListener, CollectFieldItem.OnEditTextPhotoTouchListener {
     protected PictureSelectUtil imgSelectUtil;
     protected int themeId = R.style.picture_default_style;
     protected int chooseMode = PictureMimeType.ofAll();
@@ -154,13 +154,18 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
             case R.id.tv_save:
                 saveEntity();
                 break;
-            case R.id.tv_scan_id_card:
-                chooseRequest = ActivityRequestCode.PICTURE_ID_CARD;
-                setSelectImgData();
-                break;
-
         }
 
+    }
+
+    @Override
+    public void onEditTextPhotoTouch(View view) {
+        switch ((int)view.getTag()) {
+            case R.id.item_id_number:
+            chooseRequest = ActivityRequestCode.PICTURE_ID_CARD;
+            setSelectImgData();
+            break;
+        }
     }
 
     @Override
@@ -196,7 +201,7 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
                 ((PersonInfo) mEntity).getPerson().setModifyDate(null);//时间服务端会更新,这里不需要更新
             } else
                 ((Enterprise) mEntity).setModifyDate(null);
-                buildEntity(mEntity);
+            buildEntity(mEntity);
         } else {
             try {
                 mEntity = getType().newInstance();

@@ -1,5 +1,6 @@
 package com.joint.jointpolice.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -168,11 +169,11 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
                 LUtils.toast("待添加");
                 MyCustomDialog myCustomDialog = new MyCustomDialog.Builder(this)
                         .setView(R.layout.dialog_select_search)
-                        .setHeight(DensityUtil.dp2px(this,282))
-                        .setWidth(DensityUtil.dp2px(this,232))
+                        //.setHeight(DensityUtil.dp2px(this,282))
+                        //.setWidth(DensityUtil.dp2px(this,232))
                         .setCancelTouchout(true)
                         .Build();
-                //myCustomDialog.show();
+                myCustomDialog.show();
                 break;
         }
     }

@@ -112,10 +112,6 @@
                         android:text="基本信息" />
 
                     <View style="@style/itemDivider" />
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
                         <com.joint.jointpolice.widget.custom.CollectFieldItem
                             android:id="@+id/item_id_number"
                             android:layout_width="match_parent"
@@ -123,17 +119,9 @@
                             android:layout_marginTop="@dimen/bdp_5"
                             custom:edt_hint="请输入身份证号"
                             custom:tv_star_visible="VISIBLE"
+                            custom:ic_photo_visiable="VISIBLE"
                             custom:tv_text="身份证号"></com.joint.jointpolice.widget.custom.CollectFieldItem>
 
-                        <TextView
-                            android:id="@+id/tv_scan_id_card"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_centerInParent="true"
-                            android:layout_marginLeft="-38dp"
-                            android:layout_toRightOf="@+id/item_id_number"
-                            android:background="@drawable/ic_photo64" />
-                    </RelativeLayout>
 
                     <com.joint.jointpolice.widget.custom.CollectFieldItem
                         android:id="@+id/item_name"
@@ -142,7 +130,7 @@
                         custom:edt_hint="请输入姓名"
                         custom:tv_star_visible="VISIBLE"
                         custom:tv_text="姓&#12288;&#12288;名"
-
+custom:ic_photo_visiable="VISIBLE"
                         ></com.joint.jointpolice.widget.custom.CollectFieldItem>
                     <com.joint.jointpolice.widget.custom.CollectFieldItem
                         android:id="@+id/item_telephone"

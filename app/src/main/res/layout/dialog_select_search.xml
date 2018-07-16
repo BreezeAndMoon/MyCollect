@@ -2,29 +2,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_dialog">
+    android:background="@color/colorAccent">
 <LinearLayout
+    android:background="@color/white"
     android:id="@+id/layout"
-    android:background="@color/gray"
-    android:layout_marginTop="@dimen/bdp_32"
-    android:layout_marginRight="@dimen/bdp_32"
+    android:layout_margin="@dimen/bdp_16"
     android:layout_centerInParent="true"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="@dimen/bdp_16"
+    android:paddingRight="@dimen/bdp_16"
     >
     <TextView
         android:id="@+id/tv_title"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:gravity="center"
         android:layout_marginTop="@dimen/bdp_15"
+        android:layout_marginBottom="@dimen/bdp_15"
         android:text="居住事由"
-        android:textColor="@color/black"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_font_size_huge" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
     <TextView
         android:layout_width="32dp"

@@ -3,6 +3,7 @@ package com.joint.jointpolice.activity.collect;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -73,10 +74,11 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
     boolean mIsPause;
     int mSearchType;
     boolean mIsQueryFlat;
-
+    Drawable mPhotoDrawable;
     @Override
     protected void onCreate(Bundle savedInstanceState, String tag) {
         setContentView(R.layout.activity_address);
+         mPhotoDrawable = getResources().getDrawable(R.drawable.ic_photo);
     }
 
     @Override

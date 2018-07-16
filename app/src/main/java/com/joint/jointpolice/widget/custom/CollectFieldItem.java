@@ -44,11 +44,12 @@ public class CollectFieldItem extends LinearLayout implements View.OnClickListen
         String text = typedArray.getString(R.styleable.CollectFieldItem_tv_text);
         int visible = typedArray.getInt(R.styleable.CollectFieldItem_tv_star_visible, View.INVISIBLE);
         boolean focusable = typedArray.getBoolean(R.styleable.CollectFieldItem_edt_focusable, true);
-        int photoVisible = typedArray.getInt(R.styleable.CollectFieldItem_ic_photo_visiable, View.VISIBLE);
+        int photoVisible = typedArray.getInt(R.styleable.CollectFieldItem_ic_photo_visiable, View.INVISIBLE);
         mTextView.setText(text);
         mEditText.setHint(hint);
         mEditText.setFocusable(focusable);
         mEditText.setOnClickListener(this);
+        mEditText.setCompoundDrawablePadding(20);
         mEditText.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -88,13 +89,14 @@ public class CollectFieldItem extends LinearLayout implements View.OnClickListen
 
     public void setOnEditTextClickListener(OnEditTextClickListener onEditTextClickListener) {
         mOnEditTextClickListener = onEditTextClickListener;
-        mEditText.setTag(this.getId());
+        mEditText.setTag(this.getId());//通过view获取CollectFieldItem的id
     }
     public interface OnEditTextPhotoTouchListener{
         void onEditTextPhotoTouch(View view);
 }
     public void setOnEditTextPhotoTouchListener(OnEditTextPhotoTouchListener onEditTextPhotoTouchListener){
         mOnEditTextPhotoTouchListener = onEditTextPhotoTouchListener;
+        mEditText.setTag(this.getId());
     }
     @Override
     public void onClick(View v) {

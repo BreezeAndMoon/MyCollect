@@ -34,7 +34,6 @@ public class MyCustomDialog extends Dialog {
     private MyCustomDialog(Builder builder, int resStyle) {
         super(builder.context, resStyle);
         initValue(builder);
-        setContentView(view);
     }
 
     private void initValue(Builder builder) {
@@ -52,14 +51,15 @@ public class MyCustomDialog extends Dialog {
         setCanceledOnTouchOutside(cancelTouchout);
         Window window = getWindow();
         WindowManager.LayoutParams layoutParams = window.getAttributes();
-        layoutParams.gravity = Gravity.CENTER;
-        int screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
+        //layoutParams.gravity = Gravity.CENTER;
+        int screenWidth = ((Activity) context).getWindowManager().getDefaultDisplay().getWidth();
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        layoutParams.width =(int)(screenWidth*0.8);
+        //layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.width = (int) (screenWidth * 0.75);
         window.setAttributes(layoutParams);
     }
 
-    public static class Builder {
+    public static final class Builder {
         private Context context;
         private int height, width;
         private boolean cancelTouchout;
@@ -68,6 +68,11 @@ public class MyCustomDialog extends Dialog {
 
         public Builder(Context context) {
             this.context = context;
+        }
+
+        public Builder(Context context,int resStyle) {
+            this.context=context;
+            this.resStyle = resStyle;
         }
 
         public Builder setHeight(int height) {
