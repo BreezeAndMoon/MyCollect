@@ -10,4 +10,28 @@
         <item>无安全隐患</item>
         <item>治安隐患超过一年</item>
     </string-array>
+    <string-array name="house_situation_array">
+        <item>自用</item>
+        <item>出租</item>
+        <item>借用</item>
+        <item>出租/自用</item>
+        <item>闲置</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="house_isrent_array">
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+    <string-array name="house_type_array">
+        <item>别墅</item>
+        <item>平房</item>
+        <item>其他</item>
+        <item>单元房、公寓楼</item>
+        <item>筒子楼</item>
+        <item>自建房</item>
+        <item>四合院</item>
+        <item>活动房</item>
+        <item>车库</item>
+        <item>杂物间</item>
+    </string-array>
 </resources>

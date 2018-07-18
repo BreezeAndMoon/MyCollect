@@ -47,6 +47,7 @@ import com.joint.jointpolice.util.PictureUtil;
 import com.joint.jointpolice.util.SpUtil;
 import com.joint.jointpolice.widget.PictureSelectUtil;
 import com.joint.jointpolice.widget.custom.CollectFieldItem;
+import com.joint.jointpolice.widget.dialog.MyCustomDialog;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -65,6 +66,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -72,6 +74,7 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -87,7 +90,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CollectBuildingActivity extends BaseActivity implements View.OnClickListener {
+public class CollectBuildingActivity extends BaseActivity implements View.OnClickListener, CollectFieldItem.OnEditTextClickListener {
     private PictureSelectUtil imgSelectUtil;
     private int themeId = R.style.picture_default_style;
     private int chooseMode = PictureMimeType.ofAll();
@@ -115,7 +118,7 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
     private CollectFieldItem mAgentCertificateNumberItem;
     private CollectFieldItem mAgentNameItem;
     private CollectFieldItem mAgentPhoneItem;
-
+    private MyCustomDialog mHouseDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState, String tag) {
@@ -149,7 +152,14 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
                 startCaptureActivityForResult();
             }
         });
+        mHouseDialog = new MyCustomDialog.Builder(this)
+                .setCancelTouchout(true)
+                .setView(R.layout.dialog_select_search)
+                .Build();
         findViewById(R.id.tv_save).setOnClickListener(this);
+        mCurrentSituationItem.setOnEditTextClickListener(this);
+        mIsRentingHouseItem.setOnEditTextClickListener(this);
+        mHouseTypeItem.setOnEditTextClickListener(this);
         initPictureImg();
     }
 
@@ -274,10 +284,11 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
                         String filePath = localMedia.getCompressPath();
                         OkHttpClientManager.postFileAsyn(getResources().getString(R.string.upload_file_url), filePath, new OkHttpClientManager.ResultCallback<String>() {
                             @Override
-                            public void onError(Request request, Exception e){
+                            public void onError(Request request, Exception e) {
                                 super.onError(request, e);
                                 dismissDialogProgress();
                             }
+
                             @Override
                             public void onResponse(String response) {//返回的是"\/Upload\/temp\/15a6f1fa-f0df-4251-94f8-0029e2b43931.jpg",所以要做处理,否则保存到数据库也是该数据
                                 String path = response.replace("\"", "").replace("\\", "");
@@ -306,7 +317,7 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
                                         }
 
                                         public void onError(Request request, Exception e) {
-                                            super.onError(request,e);
+                                            super.onError(request, e);
                                             mRelativePicPath.clear();//失败后必须清空列表
                                         }
                                     });
@@ -335,6 +346,30 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    @Override
+    public void onEditTextClicked(View view) {
+        int viewResId = (int) view.getTag();
+        switch (viewResId) {
+            case R.id.item_current_situation:
+                mHouseDialog.setCheckedText(mCurrentSituationItem.getInputText());
+                mHouseDialog.setCollectFieldItemId(viewResId);
+                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_situation_array)));
+                mHouseDialog.show();
+                break;
+            case R.id.item_is_renting_house:
+                mHouseDialog.setCheckedText(mIsRentingHouseItem.getInputText());
+                mHouseDialog.setCollectFieldItemId(viewResId);
+                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_isrent_array)));
+                mHouseDialog.show();
+                break;
+            case R.id.item_house_type:
+                mHouseDialog.setCheckedText(mHouseTypeItem.getInputText());
+                mHouseDialog.setCollectFieldItemId(viewResId);
+                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_type_array)));
+                mHouseDialog.show();
+                break;
+        }
+    }
 
     private void initPicture() {
         String jsonStr = String.valueOf(mFlat.getId());
@@ -485,4 +520,5 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         intent.putExtra(CaptureActivity.EXTRA_SETTING_BUNDLE, bundle);
         startActivityForResult(intent, CaptureActivity.REQ_CODE);
     }
+
 }

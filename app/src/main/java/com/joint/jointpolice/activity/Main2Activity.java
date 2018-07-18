@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -167,11 +168,16 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.layout_more:
                 LUtils.toast("待添加");
+                ArrayList<String> list = new ArrayList<>();
+                for (int i=1;i<50;i++){
+                    list.add("测试");
+                }
                 MyCustomDialog myCustomDialog = new MyCustomDialog.Builder(this)
                         .setView(R.layout.dialog_select_search)
                         //.setHeight(DensityUtil.dp2px(this,282))
                         //.setWidth(DensityUtil.dp2px(this,232))
                         .setCancelTouchout(true)
+                        .setData(list)
                         .Build();
                 myCustomDialog.show();
                 break;
