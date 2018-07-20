@@ -351,21 +351,22 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         int viewResId = (int) view.getTag();
         switch (viewResId) {
             case R.id.item_current_situation:
-                mHouseDialog.setCheckedText(mCurrentSituationItem.getInputText());
-                mHouseDialog.setCollectFieldItemId(viewResId);
-                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_situation_array)));
+
+//                mHouseDialog.setCheckedText(mCurrentSituationItem.getInputText());
+//                mHouseDialog.setCollectFieldItemId(viewResId);
+//                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_situation_array)));
                 mHouseDialog.show();
                 break;
             case R.id.item_is_renting_house:
-                mHouseDialog.setCheckedText(mIsRentingHouseItem.getInputText());
-                mHouseDialog.setCollectFieldItemId(viewResId);
-                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_isrent_array)));
+//                mHouseDialog.setCheckedText(mIsRentingHouseItem.getInputText());
+//                mHouseDialog.setCollectFieldItemId(viewResId);
+//                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_isrent_array)));
                 mHouseDialog.show();
                 break;
             case R.id.item_house_type:
-                mHouseDialog.setCheckedText(mHouseTypeItem.getInputText());
-                mHouseDialog.setCollectFieldItemId(viewResId);
-                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_type_array)));
+//                mHouseDialog.setCheckedText(mHouseTypeItem.getInputText());
+//                mHouseDialog.setCollectFieldItemId(viewResId);
+//                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_type_array)));
                 mHouseDialog.show();
                 break;
         }

@@ -56,7 +56,7 @@ public class DialogChoiceAdapter extends BaseRecycleAdapter<String> {
             @Override
             public void onClick(View v) {
                 if (mLastCheckedBox != null)
-                    mLastCheckedBox.setChecked(false);
+                    mLastCheckedBox.setChecked(false);//点击后把上一个checkbox取消选中
                 checkBox.setChecked(true);
                 if (mOnClickListener != null)
                     mOnClickListener.onClick(v);

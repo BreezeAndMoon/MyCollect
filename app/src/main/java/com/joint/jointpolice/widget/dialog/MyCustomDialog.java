@@ -3,6 +3,7 @@ package com.joint.jointpolice.widget.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +57,6 @@ public class MyCustomDialog extends Dialog {
         mCancelTouchout = builder.cancelTouchout;
         mView = builder.view;
         mData = builder.data;
-        mCollectFieldItemId = builder.collectFeildItemId;
         mDialogChoiceAdapter = new DialogChoiceAdapter(mContext);
     }
 
@@ -65,7 +65,7 @@ public class MyCustomDialog extends Dialog {
             bindRecyclerView(mData);
         TextView cancelTextView = findViewById(R.id.tv_dialog_cancel);
         if (cancelTextView != null)
-            cancelTextView.setOnClickListener(v -> dismiss());//可以通过addViewOnclick添加，不过因为很多处使用到，不想每次都添加就统一初始化了
+            cancelTextView.setOnClickListener(v -> dismiss());
     }
 
     private void initDimension() {
@@ -88,19 +88,14 @@ public class MyCustomDialog extends Dialog {
         window.setAttributes(layoutParams);
     }
 
-    public void setData(List<String> data) {
-        this.mData = data;
+    public void resetData(List<String> data, int viewResId, String checkedText) {
+        mData = data;
         mDialogChoiceAdapter.setDataSource(mData);
         initDimension();
-    }
-
-    public void setCollectFieldItemId(int collectFieldItemIdId) {
-        mCollectFieldItemId = collectFieldItemIdId;
-    }
-
-    public void setCheckedText(String checkedText) {
+        mCollectFieldItemId = viewResId;
         mCheckedText = checkedText;
         mDialogChoiceAdapter.setCheckedText(mCheckedText);
+
     }
 
     @Override
@@ -128,7 +123,8 @@ public class MyCustomDialog extends Dialog {
                 CheckBox checkBox = view.findViewById(R.id.checkbox);
                 String checkedStr = checkBox.getText().toString();
                 CollectFieldItem collectFieldItem = ((AppCompatActivity) mContext).findViewById(mCollectFieldItemId);
-                collectFieldItem.setInputText(checkedStr);
+                if (collectFieldItem != null)
+                    collectFieldItem.setInputText(checkedStr);
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -142,7 +138,6 @@ public class MyCustomDialog extends Dialog {
         private View view;
         private int resStyle = -1;
         private List<String> data;
-        private int collectFeildItemId;
 
         public Builder(Context context) {
             this.context = context;
@@ -175,11 +170,6 @@ public class MyCustomDialog extends Dialog {
 
         public Builder setView(int viewRes) {
             this.view = view = LayoutInflater.from(context).inflate(viewRes, null);
-            return this;
-        }
-
-        public Builder setCollectFieldItemId(int collectFieldItemIdId) {
-            this.collectFeildItemId = collectFieldItemIdId;
             return this;
         }
 
