@@ -39,9 +39,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         <!--<activity-->
-         <!--android:name=".activity.Main2Activity"-->
-         <!--android:screenOrientation="portrait" />-->
+        <!-- <activity -->
+        <!-- android:name=".activity.Main2Activity" -->
+        <!-- android:screenOrientation="portrait" /> -->
         <activity
             android:name=".activity.GuideActivity"
             android:screenOrientation="portrait" />
@@ -123,10 +123,14 @@
             android:name=".activity.collect.CollectOutboundPersonActivity"
             android:windowSoftInputMode="adjustNothing" />
 
-        <!--<activity android:name=".activity.Main2Activity"></activity>-->
+        <!-- <activity android:name=".activity.Main2Activity"></activity> -->
 
         <service
             android:name=".services.ResetCollectCountService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.UploadLocationService"
             android:enabled="true"
             android:exported="true"></service>
     </application>

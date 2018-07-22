@@ -23,10 +23,29 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.youth.banner.Banner
-                android:id="@+id/banner"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"></com.youth.banner.Banner>
+                android:layout_height="wrap_content">
+                <com.youth.banner.Banner
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    ></com.youth.banner.Banner>
+                <com.sunfusheng.marqueeview.MarqueeView
+                    android:id="@+id/marqueeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom"
+                    android:background="#80000000"
+                    app:mvAnimDuration="1000"
+                    app:mvDirection="bottom_to_top"
+                    app:mvInterval="3000"
+                    app:mvTextColor="@color/white"
+                    app:mvTextSize="14sp"
+                    app:mvGravity="left"
+                    android:paddingLeft="@dimen/bdp_5"
+                    app:mvSingleLine="true"/>
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_collect_sum"

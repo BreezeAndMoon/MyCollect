@@ -19,11 +19,13 @@ import com.joint.jointpolice.activity.collect.CollectDoorplateActivity;
 import com.joint.jointpolice.activity.collect.CollectUnitActivity;
 import com.joint.jointpolice.common.BaseActivity;
 import com.joint.jointpolice.constants.Constant;
+import com.joint.jointpolice.services.UploadLocationService;
 import com.joint.jointpolice.util.DensityUtil;
 import com.joint.jointpolice.util.LUtils;
 import com.joint.jointpolice.util.SpUtil;
 import com.joint.jointpolice.widget.dialog.MyCustomDialog;
 import com.squareup.picasso.Picasso;
+import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -52,7 +54,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 
     private void initBanner() {
         Banner banner = findViewById(R.id.banner);
-        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
         banner.setImageLoader(new ImageLoader() {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
@@ -63,18 +65,36 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         banner.setBannerAnimation(Transformer.DepthPage).setIndicatorGravity(BannerConfig.CENTER);
         banner.isAutoPlay(true).setDelayTime(2000);
         banner.setImages(mImages).setBannerTitles(mTitles);
-        banner.setOnBannerListener(new OnBannerListener() {
-            @Override
-            public void OnBannerClick(int position) {
-                try {
-                    LUtils.toast("点击了" + String.valueOf(position));
-                } catch (Exception ex) {
-                    LUtils.log(ex.getMessage());
-                }
-            }
-        });
+//        banner.setOnBannerListener(new OnBannerListener() {
+//            @Override
+//            public void OnBannerClick(int position) {
+//                try {
+//                    LUtils.toast("点击了" + String.valueOf(position));
+//                } catch (Exception ex) {
+//                    LUtils.log(ex.getMessage());
+//                }
+//            }
+//        });
         banner.start();
     }
+
+    private void initMarqueeView() {
+        MarqueeView marqueeView = (MarqueeView) findViewById(R.id.marqueeView);
+        List<String> info = new ArrayList<>();
+        info.add("采菊东篱下");
+        info.add("悠然见南山");
+        info.add("山气日夕佳");
+        info.add("飞鸟相与还");
+        marqueeView.startWithList(info);
+        marqueeView.startWithList(info, R.anim.anim_bottom_in, R.anim.anim_top_out);
+        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, TextView textView) {
+                LUtils.toast(String.valueOf(position));
+            }
+        });
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState, String tag) {
@@ -102,7 +122,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         resizeTvDrawable(R.id.tv_person_sum, 64);
         resizeTvDrawable(R.id.tv_unit_sum, 64);
 
-
+        initMarqueeView();
         initBanner();
     }
 
@@ -128,14 +148,16 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        Intent serviceIntent = new Intent(this, UploadLocationService.class);
+        startService(serviceIntent);
     }
 
     @Override
     public void onBackPressed() {
         TextView tv = findViewById(R.id.tv_person);
-        int width =tv.getWidth();
+        int width = tv.getWidth();
         int measuredWidth = tv.getMeasuredWidth();
-        LUtils.log("width:"+width+"measuredWidth:"+measuredWidth);
+        LUtils.log("width:" + width + "measuredWidth:" + measuredWidth);
 
         if (System.currentTimeMillis() - time < 2000) {
             super.onBackPressed();
@@ -169,7 +191,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
             case R.id.layout_more:
                 LUtils.toast("待添加");
                 ArrayList<String> list = new ArrayList<>();
-                for (int i=1;i<50;i++){
+                for (int i = 1; i < 50; i++) {
                     list.add("测试");
                 }
                 MyCustomDialog myCustomDialog = new MyCustomDialog.Builder(this)
@@ -209,6 +231,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         drawables[1].setBounds(0, 0, size, size);
         textView.setCompoundDrawables(null, drawables[1], null, null);
     }
+
     private void initCollectCount() throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String nowDateStr = simpleDateFormat.format(new Date());
