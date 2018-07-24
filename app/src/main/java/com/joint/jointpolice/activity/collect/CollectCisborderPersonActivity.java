@@ -28,6 +28,7 @@ import com.joint.jointpolice.util.DateUtil;
 import com.joint.jointpolice.util.LUtils;
 import com.joint.jointpolice.widget.PictureSelectUtil;
 import com.joint.jointpolice.widget.custom.CollectFieldItem;
+import com.joint.jointpolice.widget.dialog.MyCustomDialog;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -65,7 +66,6 @@ public class CollectCisborderPersonActivity extends BaseCollectActivity<PersonIn
     private PersonInfo mPersonInfo;
     private Person mPerson;
     private String mHealth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState, String tag) {
         setContentView(R.layout.activity_cisborder_person);
@@ -124,6 +124,12 @@ public class CollectCisborderPersonActivity extends BaseCollectActivity<PersonIn
         });
         ((CollectFieldItem)findViewById(R.id.item_id_number)).setOnEditTextPhotoTouchListener(this);
         ((CollectFieldItem) findViewById(R.id.item_live_time)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_live_cause)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_live_place)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_sex)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_nation)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_roommate_relation)).setOnEditTextClickListener(this);
+
     }
 
     @Override

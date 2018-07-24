@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.HttpException;
+import com.esri.arcgisruntime.geometry.MultipartBuilder;
 import com.google.gson.Gson;
 import com.google.gson.internal.$Gson$Types;
 import com.joint.jointpolice.app.App;
@@ -25,6 +26,7 @@ import java.net.ConnectException;
 import java.net.FileNameMap;
 import java.net.SocketTimeoutException;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -93,6 +95,12 @@ public class OkHttpClientManager {
         }
     }
 
+    public static void postFormDataAsync(String url, String[] filePaths, String[] fileKeys, Param[] params, ResultCallback resultCallback) {
+        Request request = getInstance().buildMultipartFormRequest(url, filePaths, fileKeys, params);
+        if (request != null)
+            getInstance().deliveryResult(request, resultCallback);
+    }
+
     /**
      * 构建请求
      *
@@ -118,7 +126,8 @@ public class OkHttpClientManager {
             return null;
         File file = new File(filePath);
         if (!file.exists()) {
-            LUtils.toast("文件不存在");
+            LUtils.toast("上传图片失败");
+            LUtils.log("文件不存在");
             return null;
         } else {
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
@@ -156,6 +165,53 @@ public class OkHttpClientManager {
         return request;
     }
 
+    private Request buildMultipartFormRequest(String url, String[] filePaths, String[] fileKeys, Param[] params) {
+        File[] files = new File[filePaths.length];
+        for (int i = 0; i < filePaths.length; i++) {
+            if (TextUtils.isEmpty(filePaths[i])) {
+                LUtils.log("文件路径为空");
+                LUtils.toast("上传失败");
+                return null;
+            }
+            File file = new File(filePaths[i]);
+            if (!file.exists()) {
+                LUtils.log("文件不存在");
+                LUtils.toast("上传失败");
+                return null;
+            }
+            files[i] = file;
+        }
+        params = validateParam(params);
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        for (Param param : params) {
+            builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + param.key + "\""),
+                    RequestBody.create(null, param.value));
+        }
+        if (files != null) {
+            RequestBody fileBody = null;
+            for (int i = 0; i < files.length; i++) {
+                File file = files[i];
+                String fileName = file.getName();
+                fileBody = RequestBody.create(MediaType.parse(guessMimeType(fileName)), file);
+                //TODO 根据文件名设置contentType
+                builder.addPart(Headers.of("Content-Disposition",
+                        "form-data; name=\"" + fileKeys[i] + "\"; filename=\"" + fileName + "\""),
+                        fileBody);
+            }
+        }
+
+        RequestBody requestBody = builder.build();
+        return new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+    }
+
+    private Param[] validateParam(Param[] params) {
+        if (params == null)
+            return new Param[0];
+        else return params;
+    }
 
     private String guessMimeType(String path) {
         FileNameMap fileNameMap = URLConnection.getFileNameMap();

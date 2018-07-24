@@ -34,4 +34,94 @@
         <item>车库</item>
         <item>杂物间</item>
     </string-array>
+    <string-array name="house_nature">
+        <item>公有</item>
+        <item>私有</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="house_purpose">
+        <item>住宅</item>
+        <item>工业、交通、仓储</item>
+        <item>商业、金融、信息</item>
+        <item>教育、医疗、卫生、科研</item>
+        <item>文化、娱乐、体育</item>
+        <item>办公</item>
+        <item>军事</item>
+        <item>其他</item>
+        <item></item>
+    </string-array>
+    <string-array name="house_structure">
+        <item>钢混</item>
+        <item>混合</item>
+        <item>砖木</item>
+        <item>其他</item>
+    </string-array>
+    <!--undone-->
+    <string-array name="certificate_type">
+        <item>居民身份证</item>
+        <item>外交护照</item>
+        <item>公务护照</item>
+        <item>因公普通护照</item>
+        <item>普通护照</item>
+        <item>中国旅行证</item>
+        <item>台湾居民来往内地通行证</item>
+    </string-array>
+    <!--境内人员-->
+    <!--undone-->
+    <string-array name="live_cause">
+        <item>常住人口</item>
+        <item>务工</item>
+        <item>工人调动</item>
+        <item>干部调动</item>
+        <item>招干</item>
+        <item>招工</item>
+        <item>家属随迁</item>
+    </string-array>
+    <!--undone-->
+    <string-array name="live_place">
+        <item>租赁房屋</item>
+        <item>行业场所</item>
+        <item>普通住宅</item>
+        <item>酒店式公寓</item>
+        <item>宾馆旅店</item>
+        <item>家庭旅店</item>
+    </string-array>
+    <string-array name="sex">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+    <!---->
+    <string-array name="nation">
+        <item>汉</item>
+        <item>蒙古</item>
+        <item>回</item>
+        <item>藏</item>
+        <item>维吾尔</item>
+        <item>苗</item>
+    </string-array>
+    <!---->
+    <string-array name="roommate_relation">
+        <item>配偶</item>
+        <item>妻</item>
+        <item>女婿</item>
+        <item>女</item>
+        <item>儿媳</item>
+        <item>孙子</item>
+    </string-array>
+    <!--单位性质-->
+    <string-array name="unit_property">
+        <item>机关</item>
+        <item>事业</item>
+        <item>企业</item>
+        <item>其他</item>
+    </string-array>
+    <!---->
+    <string-array name="unit_type">
+        <item>谷物及其他作物的种植</item>
+        <item>蔬菜、园艺作物的种植</item>
+        <item>水果、坚果、饮料和香料作物的种植</item>
+        <item>中药材的种植</item>
+        <item>海洋渔业</item>
+        <item>纺织业</item>
+    </string-array>
 </resources>

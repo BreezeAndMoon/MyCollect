@@ -40,6 +40,8 @@
     <string name="unit_type_hint">单位类型:</string>
     <string name="person_name_hint">人员姓名:</string>
     <string name="person_type_hint">人员类别:</string>
+    <!--识别-->
+    <string name="recognize_card">http://ocr.ccyunmai.com:8080/UploadImage.action</string>
     <!--服务地址-->
     <string name="get_flat_list_url">http://27.154.234.238:8082/Police3DWebServices/FlatService.svc/GetListByPage</string>
     <string name="save_flat_url">http://27.154.234.238:8082/Police3DWebServices/FlatService.svc/Save</string>

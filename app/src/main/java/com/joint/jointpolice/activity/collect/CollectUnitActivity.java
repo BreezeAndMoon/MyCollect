@@ -134,6 +134,11 @@ public class CollectUnitActivity extends BaseCollectActivity<Enterprise>{
 
     @Override
     protected void initViewExtra() {
+        ((CollectFieldItem)findViewById(R.id.item_unit_property)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_unit_type)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_unit_chargeCerType)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_unit_corCerType)).setOnEditTextClickListener(this);
+        ((CollectFieldItem)findViewById(R.id.item_unit_uniformCode)).setOnEditTextPhotoTouchListener(this);
 
     }
 

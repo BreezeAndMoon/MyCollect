@@ -11,7 +11,7 @@
         android:paddingTop="@dimen/bdp_5"
         android:paddingBottom="@dimen/bdp_5"
         android:clickable="false"
-        android:paddingLeft="@dimen/bdp_30"
+        android:paddingLeft="@dimen/bdp_28"
         android:textColor="@color/textTertiary"
         android:textSize="@dimen/text_size_16" />
 </LinearLayout>

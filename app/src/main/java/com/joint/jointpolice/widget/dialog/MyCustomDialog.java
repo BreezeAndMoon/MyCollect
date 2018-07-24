@@ -16,11 +16,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.joint.jointpolice.R;
 import com.joint.jointpolice.adapter.DialogChoiceAdapter;
 import com.joint.jointpolice.widget.custom.CollectFieldItem;
+
+import org.w3c.dom.Text;
 
 import java.util.Date;
 import java.util.List;
@@ -36,9 +39,11 @@ public class MyCustomDialog extends Dialog {
     private View mView;
     private List<String> mData;
     private Handler mHandler = new Handler();
-    private int mCollectFieldItemId;
+    private CollectFieldItem mCollectFieldItem;
     private DialogChoiceAdapter mDialogChoiceAdapter;
     private String mCheckedText;
+    private OnCheckedListener mOnCheckedListener;
+    private TextView mTitleTextView;
 
     private MyCustomDialog(Builder builder) {
         super(builder.context);
@@ -66,6 +71,7 @@ public class MyCustomDialog extends Dialog {
         TextView cancelTextView = findViewById(R.id.tv_dialog_cancel);
         if (cancelTextView != null)
             cancelTextView.setOnClickListener(v -> dismiss());
+        mTitleTextView = findViewById(R.id.tv_title);
     }
 
     private void initDimension() {
@@ -88,14 +94,24 @@ public class MyCustomDialog extends Dialog {
         window.setAttributes(layoutParams);
     }
 
-    public void resetData(List<String> data, int viewResId, String checkedText) {
+    public void resetData(List<String> data, int viewResId) {
         mData = data;
         mDialogChoiceAdapter.setDataSource(mData);
         initDimension();
-        mCollectFieldItemId = viewResId;
+        mCollectFieldItem = ((CollectFieldItem) ((AppCompatActivity) mContext).findViewById(viewResId));
+        String checkedText = mCollectFieldItem.getInputText();
         mCheckedText = checkedText;
         mDialogChoiceAdapter.setCheckedText(mCheckedText);
 
+    }
+
+    public void show(String title) {
+        super.show();
+        mTitleTextView.setText(title);
+    }
+
+    public void setOnCheckedListener(OnCheckedListener listener) {
+        mOnCheckedListener = listener;
     }
 
     @Override
@@ -107,7 +123,7 @@ public class MyCustomDialog extends Dialog {
         initExtra();
     }
 
-    public void bindRecyclerView(List<String> data) {
+    private void bindRecyclerView(List<String> data) {
         RecyclerView recyclerView = findViewById(R.id.recy_choice);
         mDialogChoiceAdapter = new DialogChoiceAdapter(mContext);
         mDialogChoiceAdapter.setDataSource(data);
@@ -122,9 +138,10 @@ public class MyCustomDialog extends Dialog {
                 }, 300);
                 CheckBox checkBox = view.findViewById(R.id.checkbox);
                 String checkedStr = checkBox.getText().toString();
-                CollectFieldItem collectFieldItem = ((AppCompatActivity) mContext).findViewById(mCollectFieldItemId);
-                if (collectFieldItem != null)
-                    collectFieldItem.setInputText(checkedStr);
+                if (mCollectFieldItem != null)
+                    mCollectFieldItem.setInputText(checkedStr);
+                if (mOnCheckedListener != null)
+                    mOnCheckedListener.onChecked(checkedStr);
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -186,5 +203,8 @@ public class MyCustomDialog extends Dialog {
         }
     }
 
+    public interface OnCheckedListener {
+        void onChecked(String checkedStr);
+    }
 }
 

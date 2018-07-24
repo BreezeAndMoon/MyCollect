@@ -21,8 +21,4 @@ public class ActivityRequestCode {
      * 选择视频
      */
     public static final int PICTURE_SELECT_VIDEO = 3;
-    /**
-     * 身份证照片
-     */
-    public static final int PICTURE_ID_CARD=4;
 }

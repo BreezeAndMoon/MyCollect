@@ -11,8 +11,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/bdp_16"
-    android:paddingRight="@dimen/bdp_16"
+    android:paddingLeft="@dimen/bdp_20"
+    android:paddingRight="@dimen/bdp_20"
     >
     <TextView
         android:id="@+id/tv_title"
@@ -22,7 +22,6 @@
         android:gravity="center"
         android:layout_marginTop="@dimen/bdp_15"
         android:layout_marginBottom="@dimen/bdp_15"
-        android:text="居住事由"
         android:textColor="@color/colorAccent"
         android:textSize="24sp" />
     <android.support.v7.widget.RecyclerView

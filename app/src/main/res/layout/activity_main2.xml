@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/include_toolbar" />
+        layout="@layout/toolbar" />
 
     <com.joint.jointpolice.widget.RecyScollView
         android:layout_width="match_parent"

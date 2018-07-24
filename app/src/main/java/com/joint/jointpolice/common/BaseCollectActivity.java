@@ -1,6 +1,7 @@
 package com.joint.jointpolice.common;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -17,6 +18,10 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.joint.jointpolice.R;
 import com.joint.jointpolice.activity.LoginActivity;
 import com.joint.jointpolice.activity.collect.CollectBuildingActivity;
@@ -34,8 +39,10 @@ import com.joint.jointpolice.util.DateUtil;
 import com.joint.jointpolice.util.LUtils;
 import com.joint.jointpolice.util.PictureUtil;
 import com.joint.jointpolice.util.SpUtil;
+import com.joint.jointpolice.util.StringUtil;
 import com.joint.jointpolice.widget.PictureSelectUtil;
 import com.joint.jointpolice.widget.custom.CollectFieldItem;
+import com.joint.jointpolice.widget.dialog.MyCustomDialog;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -58,6 +65,8 @@ import java.util.List;
 import okhttp3.Request;
 
 import static com.joint.jointpolice.util.SpUtil.get;
+import static com.joint.jointpolice.util.StringUtil.getHtmlMsg;
+import static com.joint.jointpolice.util.StringUtil.getListFromArrayRes;
 
 /**
  * Created by Joint229 on 2018/6/7.
@@ -78,6 +87,12 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
     boolean mIsPerson;
     TimePickerView mTimePickerView;
     int mViewID;
+    private MyCustomDialog mMyDialog;
+    final int CISBORDERPERSON_ID_CARD = 4;
+    final int BUSINESS_LICENCE = 5;
+    final int UNIT_CORCER_ID_CARD = 6;
+    final int UNIT_CHARGE_ID_CARD = 7;
+    final int UNIT_UNIFORM_CODE = 8;
 
     @Override
     protected void initView() {
@@ -86,6 +101,10 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
         findViewById(R.id.tv_save).setOnClickListener(this);
         TextView titleTv = findViewById(R.id.toolbar_tv_title);
         titleTv.setText(getToolbarTitle());
+        mMyDialog = new MyCustomDialog.Builder(this)
+                .setCancelTouchout(true)
+                .setView(R.layout.dialog_select_search)
+                .Build();
         initPictureImg();
         initViewExtra();
     }
@@ -112,6 +131,63 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
 
     }
 
+    private void onRecognized(int idResID, int nameResID, Intent data) {
+        LocalMedia idCardPicture = PictureSelector.obtainMultipleResult(data).get(0);
+        OkHttpClientManager.postFormDataAsync(idCardPicture.getCompressPath(), new OkHttpClientManager.ResultCallback<String>() {
+            @Override
+            public void onResponse(String response) {
+                Document parse = Jsoup.parse(response);
+                final Elements select = parse.select("div#ocrresult");
+                String id = getHtmlMsg(select.get(1).text(), "公民身份号码:", "签发机关");
+                ((CollectFieldItem) findViewById(idResID)).setInputText(id);
+                String name = getHtmlMsg(select.text(), "姓名:", "性别");
+                ((CollectFieldItem) findViewById(nameResID)).setInputText(name);
+            }
+
+            @Override
+            public void onBefore() {
+                showDialogProgress();
+            }
+
+            @Override
+            public void onAfter() {
+                dismissDialogProgress();
+            }
+        });
+    }
+
+    private void onUniformCodeRecognized(int resID, Intent data) {
+        LocalMedia idCardPicture = PictureSelector.obtainMultipleResult(data).get(0);
+        String url = getResources().getString(R.string.recognize_card);
+        String[] filePaths = new String[]{idCardPicture.getCompressPath()};
+        String[] fileKeys = new String[]{"img"};//必须要传正确的key值
+        OkHttpClientManager.Param param1 = new OkHttpClientManager.Param("action","template");
+        OkHttpClientManager.Param param2 = new OkHttpClientManager.Param("callbackurl","/idcard/");
+        OkHttpClientManager.Param[] params= new OkHttpClientManager.Param[]{param1,param2};
+        OkHttpClientManager.postFormDataAsync(url, filePaths, fileKeys, params, new OkHttpClientManager.ResultCallback<String>() {
+            @Override
+            public void onResponse(String response) {
+                Document parse = Jsoup.parse(response);
+                final Elements select = parse.select("div#ocrresult");
+                String resultJson = select.get(1).text();
+                JsonObject jsonObject = new JsonParser().parse(resultJson).getAsJsonObject();
+                JsonArray jsonArray = jsonObject.get("childs").getAsJsonArray();
+                String uniformCode= jsonArray.get(1).getAsJsonObject().get("childs").getAsJsonArray().get(0).getAsJsonObject().get("Text").getAsString();
+                ((CollectFieldItem) findViewById(resID)).setInputText(uniformCode);
+            }
+
+            @Override
+            public void onBefore() {
+                showDialogProgress();
+            }
+
+            @Override
+            public void onAfter() {
+                dismissDialogProgress();
+            }
+        });
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
@@ -121,29 +197,18 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
                     mImageUrl = imgLists;
                     imgSelectUtil.getGridImageAdapter().setList(mImageUrl);
                     break;
-                case ActivityRequestCode.PICTURE_ID_CARD:
-                    LocalMedia idCardPicture = PictureSelector.obtainMultipleResult(data).get(0);
-                    OkHttpClientManager.postFormDataAsync(idCardPicture.getCompressPath(), new OkHttpClientManager.ResultCallback<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Document parse = Jsoup.parse(response);
-                            final Elements select = parse.select("div#ocrresult");
-                            String id = getHtmlMsg(select.get(1).text(), "公民身份号码:", "签发机关");
-                            ((CollectFieldItem) findViewById(R.id.item_id_number)).setInputText(id);
-                            String name = getHtmlMsg(select.text(), "姓名:", "性别");
-                            ((CollectFieldItem) findViewById(R.id.item_name)).setInputText(name);
-                        }
-
-                        @Override
-                        public void onBefore() {
-                            showDialogProgress();
-                        }
-
-                        @Override
-                        public void onAfter() {
-                            dismissDialogProgress();
-                        }
-                    });
+                case CISBORDERPERSON_ID_CARD:
+                    onRecognized(R.id.item_id_number, R.id.item_name, data);
+                    break;
+                case UNIT_CHARGE_ID_CARD:
+                    onRecognized(R.id.item_unit_chargeCerNo, R.id.item_unit_chargeName, data);
+                    break;
+                case UNIT_CORCER_ID_CARD:
+                    onRecognized(R.id.item_unit_corCerNo, R.id.item_unit_corName, data);
+                    break;
+                case UNIT_UNIFORM_CODE:
+                    onUniformCodeRecognized(R.id.item_unit_uniformCode,data);
+                    break;
             }
         }
     }
@@ -160,11 +225,23 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
 
     @Override
     public void onEditTextPhotoTouch(View view) {
-        switch ((int)view.getTag()) {
+        switch ((int) view.getTag()) {
             case R.id.item_id_number:
-            chooseRequest = ActivityRequestCode.PICTURE_ID_CARD;
-            setSelectImgData();
-            break;
+                chooseRequest = CISBORDERPERSON_ID_CARD;
+                setSelectImgData();
+                break;
+            case R.id.item_unit_corCerNo:
+                chooseRequest = UNIT_CORCER_ID_CARD;
+                setSelectImgData();
+                break;
+            case R.id.item_unit_chargeCerNo:
+                chooseRequest = UNIT_CHARGE_ID_CARD;
+                setSelectImgData();
+                break;
+            case R.id.item_unit_uniformCode:
+                chooseRequest = UNIT_UNIFORM_CODE;
+                setSelectImgData();
+                break;
         }
     }
 
@@ -186,6 +263,54 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
                 break;
             case R.id.item_enter_country_date:
                 mTimePickerView.show();
+                break;
+            case R.id.item_live_cause:
+                mMyDialog.resetData(getListFromArrayRes(R.array.live_cause), mViewID);
+                mMyDialog.show("居住事由");
+                break;
+            case R.id.item_live_place:
+                mMyDialog.resetData(getListFromArrayRes(R.array.live_place), mViewID);
+                mMyDialog.show("居住处所");
+                break;
+            case R.id.item_sex:
+                mMyDialog.resetData(getListFromArrayRes(R.array.live_place), mViewID);
+                mMyDialog.show("性别");
+                break;
+            case R.id.item_nation:
+                mMyDialog.resetData(getListFromArrayRes(R.array.nation), mViewID);
+                mMyDialog.show("民族");
+                break;
+            case R.id.item_roommate_relation:
+                mMyDialog.resetData(getListFromArrayRes(R.array.roommate_relation), mViewID);
+                mMyDialog.show("同住人关系");
+                break;
+            case R.id.item_unit_property:
+                mMyDialog.resetData(getListFromArrayRes(R.array.unit_property), mViewID);
+                mMyDialog.show("单位性质");
+                break;
+            case R.id.item_unit_type:
+                mMyDialog.resetData(getListFromArrayRes(R.array.unit_type), mViewID);
+                mMyDialog.show("单位类型");
+                break;
+            case R.id.item_unit_corCerType:
+                mMyDialog.resetData(getListFromArrayRes(R.array.certificate_type), mViewID);
+                mMyDialog.setOnCheckedListener(new MyCustomDialog.OnCheckedListener() {
+                    @Override
+                    public void onChecked(String checkedStr) {
+                        ((CollectFieldItem) findViewById(R.id.item_unit_corCerNo)).setPhotoVisible(("居民身份证".equals(checkedStr)));
+                    }
+                });
+                mMyDialog.show("证件类型");
+                break;
+            case R.id.item_unit_chargeCerType:
+                mMyDialog.resetData(getListFromArrayRes(R.array.certificate_type), mViewID);
+                mMyDialog.setOnCheckedListener(new MyCustomDialog.OnCheckedListener() {
+                    @Override
+                    public void onChecked(String checkedStr) {
+                        ((CollectFieldItem) findViewById(R.id.item_unit_chargeCerNo)).setPhotoVisible(("居民身份证".equals(checkedStr)));
+                    }
+                });
+                mMyDialog.show("证件类型");
                 break;
         }
     }
@@ -322,16 +447,6 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
 
             }
         });
-    }
-
-    private String getHtmlMsg(String s, String startContent, String endContent) {
-        String[] id = s.split(startContent);
-        String[] idTrue = id[1].split(endContent);
-        return idTrue[0];
-    }
-
-    private void selectTime(int id) {
-
     }
 
     private void setSelectImgData() {

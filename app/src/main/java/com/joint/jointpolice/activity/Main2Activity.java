@@ -1,6 +1,7 @@
 package com.joint.jointpolice.activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -103,7 +104,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void initView() {
-        findViewById(R.id.toolbar_img_left).setVisibility(View.INVISIBLE);
+        //findViewById(R.id.toolbar_img_left).setVisibility(View.INVISIBLE);
         ((TextView) findViewById(R.id.toolbar_tv_title)).setText("首页");
         findViewById(R.id.tv_my).setOnClickListener(this);
         findViewById(R.id.layout_house).setOnClickListener(this);
@@ -190,18 +191,6 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.layout_more:
                 LUtils.toast("待添加");
-                ArrayList<String> list = new ArrayList<>();
-                for (int i = 1; i < 50; i++) {
-                    list.add("测试");
-                }
-                MyCustomDialog myCustomDialog = new MyCustomDialog.Builder(this)
-                        .setView(R.layout.dialog_select_search)
-                        //.setHeight(DensityUtil.dp2px(this,282))
-                        //.setWidth(DensityUtil.dp2px(this,232))
-                        .setCancelTouchout(true)
-                        .setData(list)
-                        .Build();
-                myCustomDialog.show();
                 break;
         }
     }

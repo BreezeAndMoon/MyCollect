@@ -45,6 +45,7 @@ import com.joint.jointpolice.model.CollectModels.SaveFlatParameter;
 import com.joint.jointpolice.util.LUtils;
 import com.joint.jointpolice.util.PictureUtil;
 import com.joint.jointpolice.util.SpUtil;
+import com.joint.jointpolice.util.StringUtil;
 import com.joint.jointpolice.widget.PictureSelectUtil;
 import com.joint.jointpolice.widget.custom.CollectFieldItem;
 import com.joint.jointpolice.widget.dialog.MyCustomDialog;
@@ -90,7 +91,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CollectBuildingActivity extends BaseActivity implements View.OnClickListener, CollectFieldItem.OnEditTextClickListener {
+import static com.joint.jointpolice.util.StringUtil.getHtmlMsg;
+
+public class CollectBuildingActivity extends BaseActivity implements View.OnClickListener, CollectFieldItem.OnEditTextClickListener, CollectFieldItem.OnEditTextPhotoTouchListener {
     private PictureSelectUtil imgSelectUtil;
     private int themeId = R.style.picture_default_style;
     private int chooseMode = PictureMimeType.ofAll();
@@ -119,6 +122,8 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
     private CollectFieldItem mAgentNameItem;
     private CollectFieldItem mAgentPhoneItem;
     private MyCustomDialog mHouseDialog;
+    final int AGENT_ID_CARD = 5;
+    final int LANDLORD_ID_CARD = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState, String tag) {
@@ -160,6 +165,13 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         mCurrentSituationItem.setOnEditTextClickListener(this);
         mIsRentingHouseItem.setOnEditTextClickListener(this);
         mHouseTypeItem.setOnEditTextClickListener(this);
+        mHouseStructureItem.setOnEditTextClickListener(this);
+        mHouseNatureItem.setOnEditTextClickListener(this);
+        mHousePurposeItem.setOnEditTextClickListener(this);
+        mLandlordCertificateTypeItem.setOnEditTextClickListener(this);
+        mAgentCertificateTypeItem.setOnEditTextClickListener(this);
+        mLandlordCertificateNumberItem.setOnEditTextPhotoTouchListener(this);
+        mAgentCertificateNumberItem.setOnEditTextPhotoTouchListener(this);
         initPictureImg();
     }
 
@@ -178,8 +190,13 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
                     mImageUrl = imgLists;
                     imgSelectUtil.getGridImageAdapter().setList(mImageUrl);
                     String path = mImageUrl.get(0).getCompressPath();//在app缓存目录中
-
                     //uploadAndRecognize(path);
+                    break;
+                case AGENT_ID_CARD:
+                    onRecognized(R.id.item_agent_certificate_number, R.id.item_agent_name, data);
+                    break;
+                case LANDLORD_ID_CARD:
+                    onRecognized(R.id.item_landlord_certificate_number, R.id.item_landlord_name, data);
                     break;
             }
         }
@@ -351,23 +368,62 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         int viewResId = (int) view.getTag();
         switch (viewResId) {
             case R.id.item_current_situation:
-
-//                mHouseDialog.setCheckedText(mCurrentSituationItem.getInputText());
-//                mHouseDialog.setCollectFieldItemId(viewResId);
-//                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_situation_array)));
-                mHouseDialog.show();
+                mHouseDialog.resetData(Arrays.asList(getResources().getStringArray(R.array.house_situation_array)), viewResId);
+                mHouseDialog.show("房屋现状");
                 break;
             case R.id.item_is_renting_house:
-//                mHouseDialog.setCheckedText(mIsRentingHouseItem.getInputText());
-//                mHouseDialog.setCollectFieldItemId(viewResId);
-//                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_isrent_array)));
-                mHouseDialog.show();
+                mHouseDialog.resetData(Arrays.asList(getResources().getStringArray(R.array.house_isrent_array)), viewResId);
+                mHouseDialog.show("是否出租屋");
                 break;
             case R.id.item_house_type:
-//                mHouseDialog.setCheckedText(mHouseTypeItem.getInputText());
-//                mHouseDialog.setCollectFieldItemId(viewResId);
-//                mHouseDialog.setData(Arrays.asList(getResources().getStringArray(R.array.house_type_array)));
-                mHouseDialog.show();
+                mHouseDialog.resetData(Arrays.asList(getResources().getStringArray(R.array.house_type_array)), viewResId);
+                mHouseDialog.show("房屋类别");
+                break;
+            case R.id.item_house_nature:
+                mHouseDialog.resetData(StringUtil.getListFromArrayRes(R.array.house_nature), viewResId);
+                mHouseDialog.show("房屋性质");
+                break;
+            case R.id.item_house_purpose:
+                mHouseDialog.resetData(StringUtil.getListFromArrayRes(R.array.house_purpose), viewResId);
+                mHouseDialog.show("房屋用途");
+                break;
+            case R.id.item_house_structure:
+                mHouseDialog.resetData(StringUtil.getListFromArrayRes(R.array.house_structure), viewResId);
+                mHouseDialog.show("房屋结构");
+                break;
+            case R.id.item_landlord_certificate_type:
+                mHouseDialog.resetData(StringUtil.getListFromArrayRes(R.array.certificate_type), viewResId);
+                mHouseDialog.setOnCheckedListener(new MyCustomDialog.OnCheckedListener() {
+                    @Override
+                    public void onChecked(String checkedStr) {
+                        mLandlordCertificateNumberItem.setPhotoVisible("居民身份证".equals(checkedStr));
+                    }
+                });
+                mHouseDialog.show("证件类型");
+                break;
+            case R.id.item_agent_certificate_type:
+                mHouseDialog.resetData(StringUtil.getListFromArrayRes(R.array.certificate_type), viewResId);
+                mHouseDialog.setOnCheckedListener(new MyCustomDialog.OnCheckedListener() {
+                    @Override
+                    public void onChecked(String checkedStr) {
+                        mAgentCertificateNumberItem.setPhotoVisible("居民身份证".equals(checkedStr));
+                    }
+                });
+                mHouseDialog.show("证件类型");
+                break;
+        }
+    }
+
+    @Override
+    public void onEditTextPhotoTouch(View view) {
+        switch ((int) view.getTag()) {
+            case R.id.item_landlord_certificate_number:
+                chooseRequest = LANDLORD_ID_CARD;
+                setSelectImgData();
+                break;
+            case R.id.item_agent_certificate_number:
+                chooseRequest = AGENT_ID_CARD;
+                setSelectImgData();
                 break;
         }
     }
@@ -484,6 +540,31 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
             public void onItemDelClick(int position) {
                 //mTvPictureNum.setText(getString(R.string.text_picture_img_num,mImageUrl.size()));
 
+            }
+        });
+    }
+
+    private void onRecognized(int idResID, int nameResID, Intent data) {
+        LocalMedia idCardPicture = PictureSelector.obtainMultipleResult(data).get(0);
+        OkHttpClientManager.postFormDataAsync(idCardPicture.getCompressPath(), new OkHttpClientManager.ResultCallback<String>() {
+            @Override
+            public void onResponse(String response) {
+                Document parse = Jsoup.parse(response);
+                final Elements select = parse.select("div#ocrresult");
+                String id = getHtmlMsg(select.get(1).text(), "公民身份号码:", "签发机关");
+                ((CollectFieldItem) findViewById(idResID)).setInputText(id);
+                String name = getHtmlMsg(select.text(), "姓名:", "性别");
+                ((CollectFieldItem) findViewById(nameResID)).setInputText(name);
+            }
+
+            @Override
+            public void onBefore() {
+                showDialogProgress();
+            }
+
+            @Override
+            public void onAfter() {
+                dismissDialogProgress();
             }
         });
     }
