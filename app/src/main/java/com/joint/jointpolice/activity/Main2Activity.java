@@ -121,6 +121,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         mNavigationView = findViewById(R.id.navigation_view);
+        mNavigationView.setCheckedItem(R.id.nav_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
 ////        findViewById(R.id.tv_my).setOnClickListener(this);
 //        findViewById(R.id.tv_house).setOnClickListener(this);
@@ -134,7 +135,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 //        resizeTvDrawable(R.id.tv_doorplate, 128);
 ////        resizeTvDrawable(R.id.tv_main, 64);
 ////        resizeTvDrawable(R.id.tv_my, 64);
-//
+//todo 调整大小
         resizeTvDrawable(R.id.tv_house_sum, 96);
         resizeTvDrawable(R.id.tv_person_sum, 96);
         resizeTvDrawable(R.id.tv_unit_sum, 96);

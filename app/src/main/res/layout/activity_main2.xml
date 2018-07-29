@@ -66,15 +66,17 @@
     android:layout_marginTop="@dimen/bdp_10"
     android:background="@color/white"
     >
+
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/bdp_10"
         android:layout_marginLeft="@dimen/bdp_20"
         android:layout_marginRight="@dimen/bdp_20"
         android:layout_marginTop="@dimen/bdp_10"
-        android:layout_marginBottom="@dimen/bdp_10"
         app:columnCount="3"
         app:rowCount="2">
+
         <TextView
             android:id="@+id/tv_collect_sum"
             android:layout_width="match_parent"
@@ -85,36 +87,34 @@
             android:paddingBottom="@dimen/bdp_10"
             android:paddingLeft="@dimen/bdp_5"
             android:paddingTop="@dimen/bdp_10"
-            app:layout_columnSpan="3"
-            android:textColor="@color/textPrimary2" />
-        <TextView
-        android:id="@+id/tv_person_sum"
-   style="@style/MainTextView"
-        android:drawableTop="@drawable/ic_person_128"
-            android:paddingTop="@dimen/bdp_5"
-            android:paddingBottom="@dimen/bdp_5"
-      android:text="0"
-         />
+            android:textColor="@color/textPrimary2"
+            app:layout_columnSpan="3" />
 
         <TextView
-        android:id="@+id/tv_house_sum"
-      style="@style/MainTextView"
+            android:id="@+id/tv_person_sum"
+            style="@style/MainTextView"
+            android:drawableTop="@drawable/ic_person_128"
+            android:paddingBottom="@dimen/bdp_5"
+            android:paddingTop="@dimen/bdp_5"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/tv_house_sum"
+            style="@style/MainTextView"
             android:drawableTop="@drawable/ic_house_128"
-            android:paddingTop="@dimen/bdp_5"
             android:paddingBottom="@dimen/bdp_5"
-        android:text="0"
-      />
+            android:paddingTop="@dimen/bdp_5"
+            android:text="0" />
 
         <TextView
-        android:id="@+id/tv_unit_sum"
-       style="@style/MainTextView"
-            android:paddingTop="@dimen/bdp_5"
+            android:id="@+id/tv_unit_sum"
+            style="@style/MainTextView"
+            android:drawableTop="@drawable/ic_unit_128"
             android:paddingBottom="@dimen/bdp_5"
 
-            android:drawableTop="@drawable/ic_unit_128"
+            android:paddingTop="@dimen/bdp_5"
 
-        android:text="0"
-       />
+            android:text="0" />
     </android.support.v7.widget.GridLayout>
 
 </android.support.v7.widget.CardView>
@@ -178,7 +178,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-
+    app:headerLayout="@layout/nav_header"
+    app:menu="@menu/nav_menu"
     >
 
 </android.support.design.widget.NavigationView>

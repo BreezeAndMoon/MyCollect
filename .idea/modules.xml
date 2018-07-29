@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JointPolice.iml" filepath="$PROJECT_DIR$/JointPolice.iml" />
+      <module fileurl="file://D:\Projects\MyCollect\JointPolice.iml" filepath="D:\Projects\MyCollect\JointPolice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyCollect.iml" filepath="$PROJECT_DIR$/MyCollect.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

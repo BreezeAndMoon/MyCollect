@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:padding="@dimen/bdp_10"
+    android:background="?attr/colorPrimary">
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/ic_portrait"
+    android:layout_width="70dp"
+    android:layout_height="@dimen/bdp_70"
+    android:src="@mipmap/ic_logo"
+    android:layout_centerVertical="true"
+    android:layout_alignParentLeft="true"
+    >
+
+</de.hdodenhof.circleimageview.CircleImageView>
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="王建强"
+        android:textColor="@color/white"
+        android:textSize="@dimen/bdp_14"
+        android:layout_above="@+id/user_police_address"
+        />
+    <TextView
+        android:id="@+id/user_police_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="厦门市公安局湖里区派出所"
+        android:textColor="@color/white"
+        android:textSize="@dimen/bdp_14"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>
