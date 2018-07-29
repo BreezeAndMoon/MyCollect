@@ -50,24 +50,26 @@ public class LoginActivity extends BaseActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!isCanLogin()){
+                if (!isCanLogin()) {
                     return;
                 }
                 String jsonStr = buildData();
                 OkHttpClientManager.postAsyn(getResources().getString(R.string.login_getuser_url), jsonStr, new OkHttpClientManager.ResultCallback<User>() {
                     @Override
                     public void onResponse(User response) {
-                        if(response!=null){
-                            userID= response.getId();
+                        if (response != null) {
+                            userID = response.getId();
                             startActivity(new Intent(LoginActivity.this, Main2Activity.class));
                             finish();
-                        }else
+                        } else
                             LUtils.toast("用户名或密码错误");
                     }
-                    public void onBefore(){
+
+                    public void onBefore() {
                         showDialogProgress();
                     }
-                    public void onAfter(){
+
+                    public void onAfter() {
                         dismissDialogProgress();
                     }
                 });

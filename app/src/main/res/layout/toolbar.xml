@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+    android:layout_height="?attr/actionBarSize"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:theme="@style/ThemeOverlay.AppCompat"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-    <TextView
-        android:id="@+id/toolbar_tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity ="center"
-        />
+    android:background="?attr/colorPrimary"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    android:elevation="@dimen/bdp_4">
+    <!--<TextView-->
+        <!--android:id="@+id/toolbar_tv_title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="@dimen/text_size_18"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_gravity ="center"-->
+        <!--/>-->
 </android.support.v7.widget.Toolbar>

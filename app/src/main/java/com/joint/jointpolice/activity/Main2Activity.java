@@ -8,10 +8,17 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.joint.jointpolice.R;
 import com.joint.jointpolice.activity.collect.AddressActivity;
@@ -52,6 +59,8 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     TextView mHouseSumTextView;
     boolean mIsPause;
     long time;
+    NavigationView mNavigationView;
+    DrawerLayout mDrawerLayout;
 
     private void initBanner() {
         Banner banner = findViewById(R.id.banner);
@@ -66,6 +75,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         banner.setBannerAnimation(Transformer.DepthPage).setIndicatorGravity(BannerConfig.CENTER);
         banner.isAutoPlay(true).setDelayTime(2000);
         banner.setImages(mImages).setBannerTitles(mTitles);
+
 //        banner.setOnBannerListener(new OnBannerListener() {
 //            @Override
 //            public void OnBannerClick(int position) {
@@ -104,24 +114,30 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void initView() {
-        //findViewById(R.id.toolbar_img_left).setVisibility(View.INVISIBLE);
-        ((TextView) findViewById(R.id.toolbar_tv_title)).setText("首页");
-        findViewById(R.id.tv_my).setOnClickListener(this);
-        findViewById(R.id.layout_house).setOnClickListener(this);
-        findViewById(R.id.layout_person).setOnClickListener(this);
-        findViewById(R.id.layout_unit).setOnClickListener(this);
-        findViewById(R.id.layout_more).setOnClickListener(this);
-        resizeTvDrawable(R.id.tv_person, 128);
-
-        resizeTvDrawable(R.id.tv_unit, 128);
-        resizeTvDrawable(R.id.tv_house, 128);
-        resizeTvDrawable(R.id.tv_doorplate, 128);
-        resizeTvDrawable(R.id.tv_main, 64);
-        resizeTvDrawable(R.id.tv_my, 64);
-
-        resizeTvDrawable(R.id.tv_house_sum, 64);
-        resizeTvDrawable(R.id.tv_person_sum, 64);
-        resizeTvDrawable(R.id.tv_unit_sum, 64);
+//        ((TextView) findViewById(R.id.toolbar_tv_title)).setText("首页");
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        mNavigationView = findViewById(R.id.navigation_view);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+////        findViewById(R.id.tv_my).setOnClickListener(this);
+//        findViewById(R.id.tv_house).setOnClickListener(this);
+//        findViewById(R.id.tv_person).setOnClickListener(this);
+//        findViewById(R.id.tv_unit).setOnClickListener(this);
+//        findViewById(R.id.tv_more).setOnClickListener(this);
+//        resizeTvDrawable(R.id.tv_person, 128);
+//
+//        resizeTvDrawable(R.id.tv_unit, 128);
+//        resizeTvDrawable(R.id.tv_house, 128);
+//        resizeTvDrawable(R.id.tv_doorplate, 128);
+////        resizeTvDrawable(R.id.tv_main, 64);
+////        resizeTvDrawable(R.id.tv_my, 64);
+//
+        resizeTvDrawable(R.id.tv_house_sum, 96);
+        resizeTvDrawable(R.id.tv_person_sum, 96);
+        resizeTvDrawable(R.id.tv_unit_sum, 96);
 
         initMarqueeView();
         initBanner();
@@ -155,11 +171,6 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onBackPressed() {
-        TextView tv = findViewById(R.id.tv_person);
-        int width = tv.getWidth();
-        int measuredWidth = tv.getMeasuredWidth();
-        LUtils.log("width:" + width + "measuredWidth:" + measuredWidth);
-
         if (System.currentTimeMillis() - time < 2000) {
             super.onBackPressed();
         } else {
@@ -169,30 +180,39 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_my:
-                startActivity(new Intent(this, MyActivity.class));
-                break;
-            case R.id.layout_house:
-                Intent houseIntent = new Intent(this, AddressActivity.class);
-                houseIntent.putExtra("CollectType", Constant.Collect_House);
-                startActivity(houseIntent);
-                break;
-            case R.id.layout_person:
-                Intent personIntent = new Intent(this, AddressActivity.class);
-                personIntent.putExtra("CollectType", Constant.Collect_Person);
-                startActivity(personIntent);
-                break;
-            case R.id.layout_unit:
-                Intent unitIntent = new Intent(this, AddressActivity.class);
-                unitIntent.putExtra("CollectType", Constant.Collect_Unit);
-                startActivity(unitIntent);
-                break;
-            case R.id.layout_more:
-                LUtils.toast("待添加");
-                break;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+            mDrawerLayout.openDrawer(GravityCompat.START);
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.tv_my:
+//                startActivity(new Intent(this, MyActivity.class));
+//                break;
+//            case R.id.layout_house:
+//                Intent houseIntent = new Intent(this, AddressActivity.class);
+//                houseIntent.putExtra("CollectType", Constant.Collect_House);
+//                startActivity(houseIntent);
+//                break;
+//            case R.id.layout_person:
+//                Intent personIntent = new Intent(this, AddressActivity.class);
+//                personIntent.putExtra("CollectType", Constant.Collect_Person);
+//                startActivity(personIntent);
+//                break;
+//            case R.id.layout_unit:
+//                Intent unitIntent = new Intent(this, AddressActivity.class);
+//                unitIntent.putExtra("CollectType", Constant.Collect_Unit);
+//                startActivity(unitIntent);
+//                break;
+//            case R.id.layout_more:
+//                LUtils.toast("待添加");
+//                break;
+//        }
     }
 
     @Override
