@@ -56,7 +56,7 @@ public class ActualPersonActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initView() {
-        ((TextView) findViewById(R.id.toolbar_tv_title)).setText("实有人口");
+        setToolbarTitle("实有人口");
         mAddFab = findViewById(R.id.fab_add);
         mAddFab.setVisibility(mFabVisibility);
         mAddFab.setOnClickListener(this);

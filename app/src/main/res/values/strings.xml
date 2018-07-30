@@ -59,4 +59,7 @@
     <string name="login_getuser_url">http://27.154.234.238:8082/Police3DWebServices/DictionaryService.svc/GetUser</string>
     <string name="save_historical_track">http://27.154.234.238:8082/Police3DWebServices/DictionaryService.svc/SaveHistoricalTrack</string>
     <string name="get_send_rate">http://27.154.234.238:8082/Police3DWebServices/DictionaryService.svc/GetSendRate</string>
+    <string name="query_unit_history">http://27.154.234.238:8082/Police3DWebServices/DictionaryService.svc/GetEnterpriseListByDate</string>
+    <string name="query_person_history">http://27.154.234.238:8082/Police3DWebServices/DictionaryService.svc/GetPersonListByDate</string>
+    <string name="query_house_history">http://27.154.234.238:8082/Police3DWebServices/DictionaryService.svc/GetFlatListByDate</string>
 </resources>

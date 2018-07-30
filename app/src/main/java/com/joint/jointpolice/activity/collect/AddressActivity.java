@@ -83,7 +83,7 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
 
     @Override
     protected void initView() {
-        ((TextView) findViewById(R.id.toolbar_tv_title)).setText("地址");
+        setToolbarTitle("地址");
         mSmartRefresh = findViewById(R.id.smart_refresh);
         mSmartRefresh.setOnLoadmoreListener(this);
         mSmartRefresh.setOnRefreshListener(this);

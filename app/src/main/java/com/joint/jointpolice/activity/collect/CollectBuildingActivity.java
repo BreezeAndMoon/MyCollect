@@ -141,8 +141,7 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
     protected void initView() {
         resizeTvDrawable(R.id.tv_title_address);
         resizeTvDrawable(R.id.tv_title_house);
-        TextView titleTv = findViewById(R.id.toolbar_tv_title);
-        titleTv.setText("采集房屋");
+        setToolbarTitle("采集房屋");
         TextView toolbarTv = findViewById(R.id.toolbar_tv_right);
         toolbarTv.setText("扫一扫");
         toolbarTv.setVisibility(View.VISIBLE);

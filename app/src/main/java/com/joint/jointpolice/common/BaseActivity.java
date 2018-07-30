@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+
 
 import com.joint.jointpolice.R;
 import com.joint.jointpolice.widget.dialog.LoadingDialog;
@@ -20,28 +22,33 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected String TAG = getClass().getName();
     private LoadingDialog mLoadingDialog;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.onCreate(savedInstanceState, TAG);
         ButterKnife.bind(this);
-        this.initBack();
+        initToolbar();
         this.initPresenter();
         this.initValue();
         this.initView();
     }
 
-    private void initBack() {
-        View view = findViewById(R.id.toolbar_img_left);
-        if (view != null) {
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    finish();
-                }
-            });
-        }
+    private void initToolbar() {
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    public void setToolbarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
     public void startIntent(Class<?> clss) {

@@ -124,7 +124,9 @@
         <activity
             android:name=".activity.collect.CollectOutboundPersonActivity"
             android:windowSoftInputMode="adjustNothing" />
-
+        <activity
+            android:name=".activity.collect.CollectHistoryActivity"
+            />
         <!-- <activity android:name=".activity.Main2Activity"></activity> -->
 
         <service

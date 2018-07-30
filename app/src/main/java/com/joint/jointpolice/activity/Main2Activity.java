@@ -12,18 +12,18 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
-
 import com.joint.jointpolice.R;
 import com.joint.jointpolice.activity.collect.AddressActivity;
 import com.joint.jointpolice.activity.collect.CollectBuildingActivity;
 import com.joint.jointpolice.activity.collect.CollectDoorplateActivity;
+import com.joint.jointpolice.activity.collect.CollectHistoryActivity;
 import com.joint.jointpolice.activity.collect.CollectUnitActivity;
 import com.joint.jointpolice.common.BaseActivity;
 import com.joint.jointpolice.constants.Constant;
@@ -92,10 +92,9 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     private void initMarqueeView() {
         MarqueeView marqueeView = (MarqueeView) findViewById(R.id.marqueeView);
         List<String> info = new ArrayList<>();
-        info.add("采菊东篱下");
-        info.add("悠然见南山");
-        info.add("山气日夕佳");
-        info.add("飞鸟相与还");
+        info.add("示例广告1");
+        info.add("示例广告2");
+        info.add("示例广告3");
         marqueeView.startWithList(info);
         marqueeView.startWithList(info, R.anim.anim_bottom_in, R.anim.anim_top_out);
         marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
@@ -115,19 +114,26 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initView() {
 //        ((TextView) findViewById(R.id.toolbar_tv_title)).setText("首页");
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        Toolbar toolbar =findViewById(R.id.toolbar);
+        toolbar.setTitle("首页");
+        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
         mNavigationView = findViewById(R.id.navigation_view);
         mNavigationView.setCheckedItem(R.id.nav_main);
         mDrawerLayout = findViewById(R.id.drawer_layout);
-////        findViewById(R.id.tv_my).setOnClickListener(this);
-//        findViewById(R.id.tv_house).setOnClickListener(this);
-//        findViewById(R.id.tv_person).setOnClickListener(this);
-//        findViewById(R.id.tv_unit).setOnClickListener(this);
-//        findViewById(R.id.tv_more).setOnClickListener(this);
+        findViewById(R.id.tv_house_sum).setOnClickListener(this);
+        findViewById(R.id.tv_unit_sum).setOnClickListener(this);
+        findViewById(R.id.tv_person_sum).setOnClickListener(this);
+        findViewById(R.id.tv_house).setOnClickListener(this);
+        findViewById(R.id.tv_person).setOnClickListener(this);
+        findViewById(R.id.tv_unit).setOnClickListener(this);
+        findViewById(R.id.tv_more).setOnClickListener(this);
 //        resizeTvDrawable(R.id.tv_person, 128);
 //
 //        resizeTvDrawable(R.id.tv_unit, 128);
@@ -181,39 +187,43 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-            mDrawerLayout.openDrawer(GravityCompat.START);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
+        Intent collectHistoryIntent = new Intent(this, CollectHistoryActivity.class);
+        switch (v.getId()) {
 //            case R.id.tv_my:
 //                startActivity(new Intent(this, MyActivity.class));
 //                break;
-//            case R.id.layout_house:
-//                Intent houseIntent = new Intent(this, AddressActivity.class);
-//                houseIntent.putExtra("CollectType", Constant.Collect_House);
-//                startActivity(houseIntent);
-//                break;
-//            case R.id.layout_person:
-//                Intent personIntent = new Intent(this, AddressActivity.class);
-//                personIntent.putExtra("CollectType", Constant.Collect_Person);
-//                startActivity(personIntent);
-//                break;
-//            case R.id.layout_unit:
-//                Intent unitIntent = new Intent(this, AddressActivity.class);
-//                unitIntent.putExtra("CollectType", Constant.Collect_Unit);
-//                startActivity(unitIntent);
-//                break;
-//            case R.id.layout_more:
-//                LUtils.toast("待添加");
-//                break;
-//        }
+            case R.id.tv_house_sum:
+                collectHistoryIntent.putExtra(Constant.CollectType,Constant.Collect_House);
+                startActivity(collectHistoryIntent);
+                break;
+            case R.id.tv_unit_sum:
+                collectHistoryIntent.putExtra(Constant.CollectType,Constant.Collect_Unit);
+                startActivity(collectHistoryIntent);
+                break;
+            case R.id.tv_person_sum:
+                collectHistoryIntent.putExtra(Constant.CollectType,Constant.Collect_Person);
+                startActivity(collectHistoryIntent);
+                break;
+            case R.id.tv_house:
+                Intent houseIntent = new Intent(this, AddressActivity.class);
+                houseIntent.putExtra("CollectType", Constant.Collect_House);
+                startActivity(houseIntent);
+                break;
+            case R.id.tv_person:
+                Intent personIntent = new Intent(this, AddressActivity.class);
+                personIntent.putExtra("CollectType", Constant.Collect_Person);
+                startActivity(personIntent);
+                break;
+            case R.id.tv_unit:
+                Intent unitIntent = new Intent(this, AddressActivity.class);
+                unitIntent.putExtra("CollectType", Constant.Collect_Unit);
+                startActivity(unitIntent);
+                break;
+            case R.id.tv_more:
+                LUtils.toast("待添加");
+                break;
+        }
     }
 
     @Override

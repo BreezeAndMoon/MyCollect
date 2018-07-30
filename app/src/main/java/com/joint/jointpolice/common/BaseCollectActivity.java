@@ -99,8 +99,7 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
         resizeTvDrawable(R.id.tv_title_address);
         resizeTvDrawable(R.id.tv_title_house);
         findViewById(R.id.tv_save).setOnClickListener(this);
-        TextView titleTv = findViewById(R.id.toolbar_tv_title);
-        titleTv.setText(getToolbarTitle());
+        setToolbarTitle(getToolbarTitle());
         mMyDialog = new MyCustomDialog.Builder(this)
                 .setCancelTouchout(true)
                 .setView(R.layout.dialog_select_search)

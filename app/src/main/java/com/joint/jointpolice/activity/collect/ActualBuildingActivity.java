@@ -41,7 +41,7 @@ public class ActualBuildingActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initView() {
-        ((TextView) findViewById(R.id.toolbar_tv_title)).setText("实有房屋信息");
+        setToolbarTitle("实有房屋信息");
         mFloatingActionButton = findViewById(R.id.fab_add);
         mFloatingActionButton.setOnClickListener(this);
         mFloatingActionButton.setVisibility(View.INVISIBLE);

@@ -52,7 +52,7 @@ public class ActualUnitActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initView() {
-        ((TextView) findViewById(R.id.toolbar_tv_title)).setText("实有单位");
+        setToolbarTitle("实有单位");
         mAddFab =findViewById(R.id.fab_add);
         mAddFab.setOnClickListener(this);
         mAddFab.setVisibility(mFabVisibility);

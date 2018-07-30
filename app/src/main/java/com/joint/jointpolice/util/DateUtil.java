@@ -57,7 +57,7 @@ public class DateUtil {
         if (TextUtils.isEmpty(dateStr))
             return "";
         if (dateStr.contains("Date")) {
-            dateStr = dateStr.replace("\\","");
+            dateStr = dateStr.replace("\\", "");
             dateStr = dateStr.replace("/Date(", "").replace(")/", "");
             String time = dateStr.substring(0, dateStr.length() - 5);
             Date date = new Date(Long.parseLong(time));
@@ -69,6 +69,11 @@ public class DateUtil {
             return dateStr;
         }
 
+    }
+
+    public static String getNowTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(new Date());
     }
 
     public static void setSysTime(Context context, int hour, int minute) {

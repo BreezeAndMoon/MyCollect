@@ -14,7 +14,7 @@
         <!--<item name="android:textColor">@color/textPrimary</item>-->
         <!--<item name="android:textColorHint">@color/textHint</item>-->
         <!--<item name="android:textColorSecondary">@color/textPrimary</item>-->
-        <item name="actionBarSize">48dp</item>
+
 
     </style>
 

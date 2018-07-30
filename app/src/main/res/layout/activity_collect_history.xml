@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<include android:id="@+id/toolbar" layout="@layout/toolbar"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/tv_start_time"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/bdp_40"
+            android:gravity="center"
+            />
+        <View
+            android:background="@color/textSencondary"
+            android:layout_width="@dimen/bdp_1"
+            android:layout_height="@dimen/bdp_40"
+            />
+        <TextView
+            android:id="@+id/tv_end_time"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/bdp_40"
+            android:gravity="center"
+            />
+    </LinearLayout>
+    <View
+       android:background="@color/textSencondary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bdp_1"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>
