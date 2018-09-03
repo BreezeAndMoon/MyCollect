@@ -154,6 +154,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 if (mMyFragment == null) {
                     mMyFragment = new MyFragment();
                     mTransaction.add(R.id.frameLayout, mMyFragment);
+
                 }
                 mFragment = mMyFragment;
                 break;

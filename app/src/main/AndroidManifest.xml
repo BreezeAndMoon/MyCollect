@@ -28,12 +28,12 @@
         android:name=".app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
-        android:label="@string/app_name"
+        android:label="@string/unique_app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.Main2Activity"
-            android:label="首页"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
+        <activity android:name=".activity.LoginActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,9 +41,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- <activity -->
-        <!-- android:name=".activity.Main2Activity" -->
-        <!-- android:screenOrientation="portrait" /> -->
+         <activity
+         android:name=".activity.Main2Activity"
+         android:screenOrientation="portrait" />
         <activity
             android:name=".activity.GuideActivity"
             android:screenOrientation="portrait" />
@@ -105,13 +105,8 @@
         <activity android:name=".activity.collect.ActualUnitActivity" />
         <activity android:name=".activity.collect.ActualPersonActivity" />
         <activity android:name=".activity.collect.ActualBuildingActivity" />
-        <activity android:name=".activity.collect.AddressActivity" />
+        <activity android:name=".activity.collect.AddressActivity" android:theme="@style/MySearchView"/>
 
-        <!-- <activity android:name=".activity.collect.BuildingPersonActivity" /> -->
-        <!-- <activity android:name=".activity.collect.HousePersonActivity" /> -->
-        <!-- <activity android:name=".activity.collect.NormalPersonActivity"/> -->
-        <!-- <activity android:name=".activity.collect.TempPersonActivity" /> -->
-        <activity android:name=".activity.collect.CollectDoorplateActivity" />
         <activity
             android:name=".activity.collect.CollectNodoorPersonActivity"
             android:windowSoftInputMode="adjustNothing" />
@@ -129,10 +124,6 @@
             />
         <!-- <activity android:name=".activity.Main2Activity"></activity> -->
 
-        <service
-            android:name=".services.ResetCollectCountService"
-            android:enabled="true"
-            android:exported="true" />
         <service
             android:name=".services.UploadLocationService"
             android:enabled="true"

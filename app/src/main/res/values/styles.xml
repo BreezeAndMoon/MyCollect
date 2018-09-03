@@ -11,13 +11,19 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowBackground">@color/f5</item>
         <item name="android:windowIsTranslucent">false</item>
+
         <!--<item name="android:textColor">@color/textPrimary</item>-->
         <!--<item name="android:textColorHint">@color/textHint</item>-->
         <!--<item name="android:textColorSecondary">@color/textPrimary</item>-->
-
-
     </style>
-
+    <style name="MySearchView" parent="AppTheme">
+        <item name="searchIcon">@drawable/ic_circle</item>
+        <item name="searchHintIcon">@drawable/ic_check</item>
+        <!--<item name="editTextBackground">@color/red</item>-->
+        <item name="colorAccent">@color/red</item>
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+        <item name="colorControlActivated">@android:color/holo_orange_dark</item>
+    </style>
     <style name="userCommon">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

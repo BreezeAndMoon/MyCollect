@@ -9,15 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.joint.jointpolice.R;
-import com.joint.jointpolice.activity.collect.CollectBuildingActivity;
 import com.joint.jointpolice.activity.collect.CollectCisborderPersonActivity;
-import com.joint.jointpolice.activity.collect.CollectDoorplateActivity;
 import com.joint.jointpolice.activity.collect.CollectNodoorPersonActivity;
 import com.joint.jointpolice.activity.collect.CollectOutboundPersonActivity;
 import com.joint.jointpolice.common.BaseRecycleAdapter;
 import com.joint.jointpolice.common.RecycleViewHolder;
 import com.joint.jointpolice.constants.Constant;
-import com.joint.jointpolice.model.CollectModels.Flat;
 import com.joint.jointpolice.model.CollectModels.Person;
 import com.joint.jointpolice.util.Id2StringUtil;
 import com.joint.jointpolice.util.LUtils;

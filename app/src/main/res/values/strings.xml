@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">移动警务</string>
+    <string name="unique_app_name">移动警务</string>
     <string name="nd_imgMap_service">http://27.154.234.238:6080/arcgis/rest/services/NingDeShi/ND_ND_IMAGE/MapServer</string>
     <string name="nd_vectorMap_service">http://27.154.234.238:6080/arcgis/rest/services/NingDeShi/NingDeShi_PGIS_20171213/MapServer</string>
     <string name="wellLid_map_service">http://27.154.234.238:6088/arcgis/rest/services//xiamen3857_140/MapServer</string>

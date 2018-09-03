@@ -124,4 +124,94 @@
         <item>海洋渔业</item>
         <item>纺织业</item>
     </string-array>
+    <!--境外人员-->
+    <string-array name="person_category">
+        <item>外国人</item>
+        <item>华侨</item>
+        <item>香港居民</item>
+        <item>澳门居民</item>
+        <item>台湾居民</item>
+    </string-array>
+    <!--证件类型同certificate_type-->
+    <!--undone-->
+    <string-array name="country">
+        <item>香港</item>
+        <item>澳门</item>
+        <item>中国台湾</item>
+        <item>美国</item>
+        <item>英国</item>
+        <item>日本</item>
+        <item>韩国</item>
+        <item>尼日利亚</item>
+        <item>纽埃</item>
+        <item>诺福克岛</item>
+        <item>挪威</item>
+        <item>北马里亚纳</item>
+    </string-array>
+    <!--居住处所同live_place-->
+    <!--暂住事由同live_cause-->
+    <!--出生地同country-->
+    <!--undone-->
+    <string-array name="enter_country_place">
+        <item>高明港</item>
+        <item>阳江港</item>
+        <item>江阴港</item>
+        <item>孙吴港</item>
+        <item>景洪港</item>
+        <item>调顺港</item>
+        <item>钦州港</item>
+        <item>柳州港</item>
+        <item>福清港</item>
+        <item>万山港</item>
+        <item>东营港</item>
+        <item>莆田港</item>
+    </string-array>
+    <string-array name="landlord_relation">
+        <item>配偶</item>
+        <item>妻</item>
+        <item>女婿</item>
+        <item>女</item>
+        <item>儿媳</item>
+        <item>孙子</item>
+        <item>外孙子</item>
+        <item>父母</item>
+        <item>母亲</item>
+        <item>婆婆</item>
+    </string-array>
+    <!--无户人员-->
+    <!--民族同nation-->
+    <string-array name="education">
+        <item>相当中专或中技毕业</item>
+        <item>相当专科毕业</item>
+        <item>小学</item>
+        <item>小学毕业</item>
+        <item>小学肄业</item>
+        <item>研究生</item>
+        <item>研究生毕业</item>
+        <item>研究生肄业</item>
+        <item>职业初中毕业</item>
+        <item>职业高中毕业</item>
+    </string-array>
+    <!--国籍地区同country-->
+    <string-array name="marry">
+        <item>丧偶</item>
+        <item>离婚</item>
+        <item>已婚</item>
+        <item>其他</item>
+        <item>未婚</item>
+        <item>初婚</item>
+        <item>再婚</item>
+        <item>复婚</item>
+    </string-array>
+    <!--监护人关系同landlord_relation-->
+    <string-array name="nodoor_type">
+        <item>不符合计生政策的人员</item>
+        <item>未办理《出生证》的人员</item>
+        <item>未办理收养手续的人员</item>
+        <item>被宣告失踪或者宣告死亡后户口被注销人员</item>
+        <item>农村地区因婚嫁被注销原籍户口的人员</item>
+        <item>证件遗失、超期的人员</item>
+        <item>与外国人、无国籍人非婚生育的人员</item>
+        <item>其他无户口人员</item>
+    </string-array>
 </resources>

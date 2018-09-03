@@ -1,9 +1,13 @@
 package com.joint.jointpolice.services;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -13,6 +17,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.joint.jointpolice.R;
@@ -47,8 +52,9 @@ public class UploadLocationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Location location = getLocation();
-        if (location!=null) {
-            OkHttpClientManager.postAsyn(getResources().getString(R.string.save_historical_track), buildData(0, 0), new OkHttpClientManager.ResultCallback() {
+        if (location != null) {
+            LUtils.toast( "经度:"+location.getLongitude()+"纬度:"+location.getLatitude());
+            OkHttpClientManager.postAsyn(getResources().getString(R.string.save_historical_track), buildData(location.getAltitude(), location.getLongitude()), new OkHttpClientManager.ResultCallback() {
                 @Override
                 public void onResponse(Object response) {
                     // do nothing
@@ -66,7 +72,7 @@ public class UploadLocationService extends Service {
 
     private void alarmTask() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        int anHour = 60 * 60 * 1000;
+        int anHour = 60 * 60 * 1000;//暂时固定写一小时，可以通过接口获取
         long triggerAtTime = SystemClock.elapsedRealtime() + anHour;
         Intent newIntent = new Intent(this, UploadLocationService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, newIntent, 0);
@@ -88,7 +94,7 @@ public class UploadLocationService extends Service {
     private Location getLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //todo 申请权限
-            LUtils.toast("未开启位置访问权限");
+            LUtils.toast("未开启位置访问权限,无法上传轨迹");
             return null;
         } else {
             setLocationProvider();
@@ -112,4 +118,5 @@ public class UploadLocationService extends Service {
             locationProvider = null;
         }
     }
+
 }

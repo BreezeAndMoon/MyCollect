@@ -1,71 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
     >
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/ic_login"
-    android:scaleType="center"
-    />
-</FrameLayout>
+    <ImageView
+        android:id="@+id/image_view_bg"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/ic_login"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_alignBottom="@+id/image_view_bg"
+        android:text="登录"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_below="@id/image_view_bg"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         >
+
         <EditText
             android:id="@+id/edt_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bdp_20"
-            android:layout_marginRight="@dimen/bdp_20"
-            android:layout_marginTop="@dimen/bdp_50"
-            android:background="@drawable/bg_login_white_gray"
-            android:hint="请输入用户名"
-            android:paddingBottom="@dimen/bdp_8"
-            android:paddingLeft="@dimen/bdp_15"
-            android:paddingTop="@dimen/bdp_8"
-            android:text=""/>
+            android:drawableLeft="@drawable/ic_user"
+            android:hint="用户名"
+            android:textSize="16dp"
+            android:drawablePadding="3dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="5dp"
+            />
         <EditText
             android:id="@+id/edt_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bdp_20"
-            android:layout_marginRight="@dimen/bdp_20"
-            android:layout_marginTop="@dimen/bdp_20"
-            android:background="@drawable/bg_login_white_gray"
-            android:hint="请输入密码"
-            android:inputType="textPassword"
-            android:paddingBottom="@dimen/bdp_8"
-            android:paddingLeft="@dimen/bdp_15"
-            android:paddingTop="@dimen/bdp_8"
-            android:text="" />
-
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/ic_lock"
+            android:hint="密码"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            />
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bdp_20"
-            android:layout_marginRight="@dimen/bdp_20"
-            android:layout_marginTop="@dimen/bdp_80"
-            android:layout_marginBottom="@dimen/bdp_80"
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:textSize="16dp"
             android:background="@drawable/select_btn_login"
-            android:gravity="center"
-            android:enabled="false"
-            android:paddingBottom="@dimen/bdp_8"
-            android:paddingTop="@dimen/bdp_8"
             android:text="登录"
-            android:textColor="@color/white" />
+            android:textColor="@android:color/white"
+            />
     </LinearLayout>
-
-
-
-
-</LinearLayout>
+</RelativeLayout>

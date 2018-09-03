@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.joint.jointpolice.R;
-import com.joint.jointpolice.policenet.CommonNet;
+
 
 
 /**

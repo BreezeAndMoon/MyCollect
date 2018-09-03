@@ -5,60 +5,51 @@
     android:orientation="vertical">
     <include android:id="@+id/toolbar" layout="@layout/toolbar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal"
-        android:paddingTop="@dimen/bdp_10"
-        android:paddingBottom="@dimen/bdp_10"
-        android:paddingLeft="@dimen/bdp_10"
-        android:paddingRight="@dimen/bdp_10"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:paddingTop="@dimen/bdp_10"-->
+        <!--android:paddingBottom="@dimen/bdp_10"-->
+        <!--android:paddingLeft="@dimen/bdp_10"-->
+        <!--android:paddingRight="@dimen/bdp_10"-->
+        <!--android:focusable="true"-->
+        <!--android:focusableInTouchMode="true">-->
 
-        <TextView
-            android:id="@+id/tv_scan"
-            android:layout_width="@dimen/bdp_28"
-            android:layout_height="@dimen/bdp_28"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/ic_scan" />
-        <!--<SearchView-->
-        <!--android:iconifiedByDefault="false"-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_scan"-->
+            <!--android:layout_width="@dimen/bdp_28"-->
+            <!--android:layout_height="@dimen/bdp_28"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:background="@drawable/ic_scan" />-->
+        <!--<EditText-->
+            <!--android:id="@+id/edt_search"-->
+            <!--android:inputType="text"-->
+            <!--android:imeOptions="actionSearch"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:textColor="@color/textPrimary2"-->
+            <!--android:layout_height="32dp"-->
+            <!--android:textColorHint="@color/textSencondary"-->
+            <!--android:textSize="@dimen/text_size_14"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="@dimen/bdp_10"-->
+            <!--android:layout_marginRight="@dimen/bdp_10"-->
+            <!--android:padding="@dimen/bdp_5"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/bg_serachview"-->
+            <!--android:hint="请输入地址"/>-->
 
-        <!--android:background="@drawable/bg_serachview"-->
-        <!--android:closeIcon="@null"-->
-        <!--android:queryHint="请输入关键字查询"-->
+        <!--<Button-->
+            <!--android:id="@+id/btn_search"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="32dp"-->
+            <!--android:textSize="@dimen/text_size_14"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:background="@drawable/bg_serachview"-->
+            <!--android:text="搜索" />-->
 
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="32dp"></SearchView>-->
-        <EditText
-            android:id="@+id/edt_search"
-            android:inputType="text"
-            android:imeOptions="actionSearch"
-            android:layout_width="wrap_content"
-            android:textColor="@color/textPrimary2"
-            android:layout_height="32dp"
-            android:textColorHint="@color/textSencondary"
-            android:textSize="@dimen/text_size_14"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/bdp_10"
-            android:layout_marginRight="@dimen/bdp_10"
-            android:padding="@dimen/bdp_5"
-            android:layout_weight="1"
-            android:background="@drawable/bg_serachview"
-            android:hint="请输入地址"/>
-
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="50dp"
-            android:layout_height="32dp"
-            android:textSize="@dimen/text_size_14"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/bg_serachview"
-            android:text="搜索" />
-
-    </LinearLayout>
+    <!--</LinearLayout>-->
     <LinearLayout
         android:paddingLeft="@dimen/bdp_10"
         android:paddingRight="@dimen/bdp_10"

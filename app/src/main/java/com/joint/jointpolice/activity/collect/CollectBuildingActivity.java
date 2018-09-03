@@ -142,20 +142,18 @@ public class CollectBuildingActivity extends BaseActivity implements View.OnClic
         resizeTvDrawable(R.id.tv_title_address);
         resizeTvDrawable(R.id.tv_title_house);
         setToolbarTitle("采集房屋");
-        TextView toolbarTv = findViewById(R.id.toolbar_tv_right);
-        toolbarTv.setText("扫一扫");
-        toolbarTv.setVisibility(View.VISIBLE);
-        toolbarTv.setOnClickListener((v) -> {
-            //todo 扫码
-            //Toast.makeText(this, "扫码", Toast.LENGTH_LONG).show();
-            if (ContextCompat.checkSelfPermission(CollectBuildingActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                // Do not have the permission of camera, request it.
-                ActivityCompat.requestPermissions(CollectBuildingActivity.this, new String[]{Manifest.permission.CAMERA}, REQ_CODE_PERMISSION);
-            } else {
-                // Have gotten the permission
-                startCaptureActivityForResult();
-            }
-        });
+
+//        toolbarTv.setOnClickListener((v) -> {
+//            //todo 扫码
+//            //Toast.makeText(this, "扫码", Toast.LENGTH_LONG).show();
+//            if (ContextCompat.checkSelfPermission(CollectBuildingActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//                // Do not have the permission of camera, request it.
+//                ActivityCompat.requestPermissions(CollectBuildingActivity.this, new String[]{Manifest.permission.CAMERA}, REQ_CODE_PERMISSION);
+//            } else {
+//                // Have gotten the permission
+//                startCaptureActivityForResult();
+//            }
+//        });
         mHouseDialog = new MyCustomDialog.Builder(this)
                 .setCancelTouchout(true)
                 .setView(R.layout.dialog_select_search)

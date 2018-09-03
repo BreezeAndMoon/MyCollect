@@ -101,11 +101,6 @@ public class FullyGridLayoutManager extends GridLayoutManager {
         }
     }
 
-//
-//    @Override
-//    public boolean canScrollVertically() {
-//        return isScrollEnable&&super.canScrollVertically();
-//    }
 
     public void setScrollEnable(boolean flag) {
         this.isScrollEnable = flag;

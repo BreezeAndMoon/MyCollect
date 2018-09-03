@@ -7,15 +7,21 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.JsonReader;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.acker.simplezxing.activity.CaptureActivity;
 import com.google.gson.Gson;
@@ -51,6 +57,7 @@ import org.jsoup.select.Evaluator;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -64,7 +71,8 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
     AddressAdapter mAddressAdapter;
     List<Flat> mFlats = new ArrayList<>();
     RecyclerView mRecyclerView;
-    EditText mSearchEditText;
+   // EditText mSearchAutoComplete;
+
     SmartRefreshLayout mSmartRefresh;
     boolean isSearched = false;
     int mPageIndex = 1;
@@ -75,6 +83,7 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
     int mSearchType;
     boolean mIsQueryFlat;
     Drawable mPhotoDrawable;
+    SearchView.SearchAutoComplete mSearchAutoComplete;
     @Override
     protected void onCreate(Bundle savedInstanceState, String tag) {
         setContentView(R.layout.activity_address);
@@ -87,15 +96,15 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
         mSmartRefresh = findViewById(R.id.smart_refresh);
         mSmartRefresh.setOnLoadmoreListener(this);
         mSmartRefresh.setOnRefreshListener(this);
-        findViewById(R.id.tv_scan).setOnClickListener(this);
-        findViewById(R.id.btn_search).setOnClickListener(this);
-        mSearchEditText = findViewById(R.id.edt_search);
+//        findViewById(R.id.tv_scan).setOnClickListener(this);
+//        findViewById(R.id.btn_search).setOnClickListener(this);
+//        mSearchEditText = findViewById(R.id.edt_search);
         String collectType = getIntent().getStringExtra("CollectType");
-        if (Constant.Collect_Person.equals(collectType))
-            mSearchEditText.setHint("请输入地址或人名");
-        if (Constant.Collect_Unit.equals(collectType)) {
-            mSearchEditText.setHint("请输入地址或单位名");
-        }
+//        if (Constant.Collect_Person.equals(collectType))
+//            mSearchEditText.setHint("请输入地址或人名");
+//        if (Constant.Collect_Unit.equals(collectType)) {
+//            mSearchEditText.setHint("请输入地址或单位名");
+//        }
         if (Constant.Collect_Unit.equals(null))
             LUtils.toast("test");
 //        mSearchEditText.addTextChangedListener(new TextWatcher() {
@@ -222,10 +231,10 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
     public void onLoadmore(RefreshLayout refreshlayout) {
         mPageIndex++;
         String jsonStr;
-        if (!isSearched || TextUtils.isEmpty(mSearchEditText.getText().toString()))
+        if (!isSearched || TextUtils.isEmpty(mSearchAutoComplete.getText().toString()))
             jsonStr = buildData();
         else if (mIsQueryFlat)
-            jsonStr = buildData(mSearchEditText.getText().toString(), mPageIndex);
+            jsonStr = buildData(mSearchAutoComplete.getText().toString(), mPageIndex);
         else {
             LUtils.toast("请先清空条件再加载");
             mSmartRefresh.finishLoadmore(0, false);
@@ -251,10 +260,10 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
     public void onRefresh(RefreshLayout refreshlayout) {
         mPageIndex = 1;
         String jsonStr;
-        if (!isSearched || TextUtils.isEmpty(mSearchEditText.getText().toString()))//不管是否属于查询,字符串为空或者""时限制只查Flat地址
+        if (!isSearched || TextUtils.isEmpty(mSearchAutoComplete.getText().toString()))//不管是否属于查询,字符串为空或者""时限制只查Flat地址
             jsonStr = buildData();
         else if (mIsQueryFlat)
-            jsonStr = buildData(mSearchEditText.getText().toString(), 1);//每次刷新显示第一页
+            jsonStr = buildData(mSearchAutoComplete.getText().toString(), 1);//每次刷新显示第一页
         else {
             LUtils.toast("请先清空条件再刷新");
             mSmartRefresh.finishRefresh(0, false);
@@ -345,30 +354,16 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_scan:
-                if (ContextCompat.checkSelfPermission(AddressActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    // Do not have the permission of camera, request it.
-                    ActivityCompat.requestPermissions(AddressActivity.this, new String[]{Manifest.permission.CAMERA}, REQ_CODE_PERMISSION);
-                } else {
-                    // Have gotten the permission
-                    startCaptureActivityForResult();
-                }
-                break;
-            case R.id.btn_search:
-                search();
-                break;
-        }
 
     }
 
     private void search() {
         isSearched = true;
         String jsonStr;
-        if (TextUtils.isEmpty(mSearchEditText.getText().toString()))//查询条件为空或""则只查Flat地址
+        if (TextUtils.isEmpty(mSearchAutoComplete.getText().toString()))//查询条件为空或""则只查Flat地址
             jsonStr = buildData();
         else
-            jsonStr = buildData(mSearchEditText.getText().toString(), 1);
+            jsonStr = buildData(mSearchAutoComplete.getText().toString(), 1);
         queryAddress(jsonStr);
     }
 
@@ -465,4 +460,49 @@ public class AddressActivity extends BaseActivity implements OnLoadmoreListener,
         startActivityForResult(intent, CaptureActivity.REQ_CODE);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch ( item.getItemId()){
+            case R.id.menu_item_scan:
+                if (ContextCompat.checkSelfPermission(AddressActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    // Do not have the permission of camera, request it.
+                    ActivityCompat.requestPermissions(AddressActivity.this, new String[]{Manifest.permission.CAMERA}, REQ_CODE_PERMISSION);
+                } else {
+                    // Have gotten the permission
+                    startCaptureActivityForResult();
+                }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.address_menu,menu);
+        MenuItem menuItem = menu.findItem(R.id.menu_item_searchview);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+         mSearchAutoComplete = searchView.findViewById(R.id.search_src_text);
+        try {
+            Field f = TextView.class.getDeclaredField("mCursorDrawableRes");
+            f.setAccessible(true);
+//            f.set(searchAutoComplete,R.drawable.shape_cursor);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        searchView.setQueryHint("请输入地址");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                search();
+                //LUtils.toast("按下搜索了");
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
 }

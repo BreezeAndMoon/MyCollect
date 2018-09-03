@@ -272,7 +272,7 @@ public abstract class BaseCollectActivity<T> extends BaseActivity implements Vie
                 mMyDialog.show("居住处所");
                 break;
             case R.id.item_sex:
-                mMyDialog.resetData(getListFromArrayRes(R.array.live_place), mViewID);
+                mMyDialog.resetData(getListFromArrayRes(R.array.sex), mViewID);
                 mMyDialog.show("性别");
                 break;
             case R.id.item_nation:

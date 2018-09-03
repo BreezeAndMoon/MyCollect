@@ -66,7 +66,7 @@ public class HtHttpApi {
      * @param urlParam
      * @param param     请求的参数对象
      * @param className
-     * @param method    只针对外网有效，HT封装的只支持POST
+     * @param method    只针对外网有效
      * @return
      * @throws Exception
      */
@@ -292,54 +292,6 @@ public class HtHttpApi {
 
 
 //    }
-    public static void httpUpload(String url,String fileName){
-        String boundary = "----WebKitFormBoundaryP0Rfzlf32iRoMhmb";
-        //实际用到的时候会多两个杠杠          ------WebKitFormBoundaryP0Rfzlf32iRoMhmb
-        String prefix = "--";
-        String end = "\r\n";
-        try {
-            URL httpUrl = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection)httpUrl.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-            //通过multipart这种编码方式上传文件
-            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary="+boundary);
-            DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-            //拼装要上传的文件
-            out.writeBytes(prefix+boundary+end);
-            out.writeBytes("Content-Disposition: form-data;"
-                    +"name=\"file\";filename=\""+"test.jpg" +"\""+end);
-            out.writeBytes(end);
-            FileInputStream inputStream = new FileInputStream(new File(fileName));
-            byte[] b = new byte[1024*4];
-            int len;
-            while((len = inputStream.read(b))!= -1){
-                out.write(b,0,len);
-            }
-            out.writeBytes(end);
-            out.writeBytes(prefix+boundary+prefix+end);
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String str = null;
-            StringBuffer sb = new StringBuffer();
-            while((str = bufferedReader.readLine())!= null){
-                sb.append(str);
-            }
-            if(out != null){
-                out.close();
-            }
-            if(inputStream != null){
-                inputStream.close();
-            }
-            if(bufferedReader != null){
-                bufferedReader.close();
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

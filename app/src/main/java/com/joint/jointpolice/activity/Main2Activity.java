@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.joint.jointpolice.R;
 import com.joint.jointpolice.activity.collect.AddressActivity;
 import com.joint.jointpolice.activity.collect.CollectBuildingActivity;
-import com.joint.jointpolice.activity.collect.CollectDoorplateActivity;
 import com.joint.jointpolice.activity.collect.CollectHistoryActivity;
 import com.joint.jointpolice.activity.collect.CollectUnitActivity;
 import com.joint.jointpolice.common.BaseActivity;
@@ -142,9 +141,10 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 ////        resizeTvDrawable(R.id.tv_main, 64);
 ////        resizeTvDrawable(R.id.tv_my, 64);
 //todo 调整大小
-        resizeTvDrawable(R.id.tv_house_sum, 96);
-        resizeTvDrawable(R.id.tv_person_sum, 96);
-        resizeTvDrawable(R.id.tv_unit_sum, 96);
+        float density = getResources().getDisplayMetrics().density;
+        resizeTvDrawable(R.id.tv_house_sum, (int)(32*density));
+        resizeTvDrawable(R.id.tv_person_sum, (int)(32*density));
+        resizeTvDrawable(R.id.tv_unit_sum, (int)(32*density));
 
         initMarqueeView();
         initBanner();
